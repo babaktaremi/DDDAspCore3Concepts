@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Controllers;
+﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.OpenApi.Models;
 using Pluralize.NET;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Linq;
 using Utility.Utilities;
 
-namespace WebFramework.Swagger
+namespace WebFrameWork.Swagger
 {
     public class ApplySummariesOperationFilter : IOperationFilter
     {

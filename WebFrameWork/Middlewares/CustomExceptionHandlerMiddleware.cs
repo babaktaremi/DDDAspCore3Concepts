@@ -1,19 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
-using System.Net;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Logging;
-using WebFramework.Api;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
-using Utility;
-using Utility.Exceptions;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using WebFrameWork.Api;
+using WebFrameWork.StatusCodeDescription;
 
-namespace WebFramework.Middlewares
+namespace WebFrameWork.Middlewares
 {
     public static class CustomExceptionHandlerMiddlewareExtensions
     {
@@ -46,9 +42,21 @@ namespace WebFramework.Middlewares
             {
                 await _next(context);
             }
-            catch (AppException exception)
+            catch (Exception exception)
             {
                 _logger.LogError(exception,exception.Message);
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+                if (!_env.IsDevelopment())
+                {
+                    context.Response.ContentType = "application/json";
+                    var response = new ApiResult(false,
+                        ApiResultStatusCode.ServerError, "Server Error");
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    await context.Response.WriteAsJsonAsync(response);
+                }
+
+                //await _next(context);
             }
         }
     }

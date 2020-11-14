@@ -30,7 +30,7 @@ namespace Application.Common
             catch (Exception e)
             {
                _logger.LogError(e,e.Message);
-                throw;
+               return default(TResponse);
             }
 
           

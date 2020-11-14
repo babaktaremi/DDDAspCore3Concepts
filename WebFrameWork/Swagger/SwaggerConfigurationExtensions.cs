@@ -1,4 +1,7 @@
-﻿
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,13 +9,9 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using Utility.Utilities;
 
-namespace WebFramework.Swagger
+namespace WebFrameWork.Swagger
 {
     public static class SwaggerConfigurationExtensions
     {
@@ -22,22 +21,6 @@ namespace WebFramework.Swagger
 
             //More info : https://github.com/mattfrear/Swashbuckle.AspNetCore.Filters
 
-            #region AddSwaggerExamples
-            //Add services to use Example Filters in swagger
-            //If you want to use the Request and Response example filters (and have called options.ExampleFilters() above), then you MUST also call
-            //This method to register all ExamplesProvider classes form the assembly
-            //services.AddSwaggerExamplesFromAssemblyOf<PersonRequestExample>();
-
-            //We call this method for by reflection with the Startup type of entry assmebly (MyApi assembly)
-            var mainAssembly = Assembly.GetEntryAssembly(); // => MyApi project assembly
-            var mainType = mainAssembly.GetExportedTypes()[0];
-
-            var methodName = nameof(Swashbuckle.AspNetCore.Filters.ServiceCollectionExtensions.AddSwaggerExamplesFromAssemblyOf);
-            //MethodInfo method = typeof(Swashbuckle.AspNetCore.Filters.ServiceCollectionExtensions).GetMethod(methodName);
-            MethodInfo method = typeof(Swashbuckle.AspNetCore.Filters.ServiceCollectionExtensions).GetRuntimeMethods().FirstOrDefault(x => x.Name == methodName && x.IsGenericMethod);
-            MethodInfo generic = method.MakeGenericMethod(mainType);
-            generic.Invoke(null, new[] { services });
-            #endregion
 
             //Add services and configuration to use swagger
             services.AddSwaggerGen(options =>
@@ -77,7 +60,7 @@ namespace WebFramework.Swagger
 
                 #region Filters
                 //Enable to use [SwaggerRequestExample] & [SwaggerResponseExample]
-                options.ExampleFilters();
+                //options.ExampleFilters();
 
                 //It doesn't work anymore in recent versions because of replacing Swashbuckle.AspNetCore.Examples with Swashbuckle.AspNetCore.Filters
                 //Adds an Upload button to endpoints which have [AddSwaggerFileUploadButton]
@@ -106,37 +89,19 @@ namespace WebFramework.Swagger
                 //});
                 #endregion
 
-                //options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                //{
-                //    {
-                //        new OpenApiSecurityScheme
-                //        {
-                //            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "OAuth2" }
-                //        },
-                //        Array.Empty<string>() //new[] { "readAccess", "writeAccess" }
-                //    }
-                //});
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                      Enter 'Bearer' [space] and then your token in the text input below.
+                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
 
                 //OAuth2Scheme
-                options.AddSecurityDefinition("OAuth2", new OpenApiSecurityScheme
-                {
-                    //Scheme = "Bearer",
-                    //In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.OAuth2,
-                    Flows = new OpenApiOAuthFlows
-                    {
-                        Password = new OpenApiOAuthFlow
-                        {
-                            TokenUrl = new Uri("https://localhost:5001/api/v1/users/Token"),
-                            //AuthorizationUrl = new Uri("https://localhost:5001/api/v1/users/Token")
-                            //Scopes = new Dictionary<string, string>
-                            //{
-                            //    { "readAccess", "Access read operations" },
-                            //    { "writeAccess", "Access write operations" }
-                            //}
-                        }
-                    }
-                });
+                //options.AddSecurityDefinition("OAuth2", new OpenApiSecurityScheme());
                 #endregion
 
                 #region Versioning

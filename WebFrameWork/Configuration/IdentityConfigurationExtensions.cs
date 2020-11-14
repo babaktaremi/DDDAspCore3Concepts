@@ -4,14 +4,12 @@ using Application.Services.Identity.Manager;
 using Application.Services.Identity.PermissionManager;
 using Application.Services.Identity.Store;
 using Application.Services.Identity.validator;
-using Autofac.Core;
 using Domain.UserAggregate;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace WebFramework.Configuration
+namespace WebFrameWork.Configuration
 {
     public static class IdentityConfigurationExtensions
     {
@@ -48,7 +46,6 @@ namespace WebFramework.Configuration
             services.AddIdentity<User, Role>(options =>
             {
                 options.User.RequireUniqueEmail = true;
-
                 options.Stores.ProtectPersonalData = false;
 
                 options.Password.RequireDigit = false;

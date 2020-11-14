@@ -1,21 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
-using WebFramework.Filters;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using Utility.Utilities;
+using WebFrameWork.Filters;
 
-
-namespace WebFramework.Api
+namespace WebFrameWork.Api
 {
-    [ApiController]
-    //[AllowAnonymous]
-    [ApiResultFilter]
-    [Route("api/v{version:apiVersion}/[controller]/[action]")]// api/v1/[controller]
     public class BaseController : ControllerBase
     {
         protected string UserName => User.Identity.Name;

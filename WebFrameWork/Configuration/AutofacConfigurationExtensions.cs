@@ -1,16 +1,15 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using Application.Services.Jwt;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Domain.Common;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.EFCore.Contracts;
 using Infrastructure.Repositories.EFCore.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using Utility;
 
-
-namespace WebFramework.Configuration
+namespace WebFrameWork.Configuration
 {
     public static class AutofacConfigurationExtensions
     {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Application.Common;
-using Application.UserApplication.Model;
+using Application.Services.Jwt;
+using Application.UserApplication.Commands.Create.Model;
 using Autofac;
 using AutoMapper;
 using FluentValidation.AspNetCore;
@@ -17,10 +18,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Utility;
-using WebFramework.Configuration;
-using WebFramework.CustomMapping;
-using WebFramework.Middlewares;
-using WebFramework.Swagger;
+using Utility.MapperConfiguration;
+using Web.Controllers;
+using WebFrameWork.Configuration;
+using WebFrameWork.Filters;
+using WebFrameWork.Middlewares;
+using WebFrameWork.Swagger;
 
 namespace Web
 {
@@ -42,13 +45,9 @@ namespace Web
         {
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
 
-            services.InitializeAutoMapper();
-
             services.AddDbContext(Configuration);
 
             services.AddCustomIdentity();
-
-            services.AddMinimalMvc();
 
             services.AddHttpContextAccessor();
 
@@ -62,9 +61,20 @@ namespace Web
 
             services.AddMediatRServices();
 
-            services.AddAutoMapper(typeof(OperationResult<>));
+            services.AddAutoMapper(typeof(JwtService),typeof(AccountController));
 
-            services.AddControllers()
+            services.AddControllers(options =>
+                {
+                    options.Filters.Add(typeof(OkResultAttribute));
+                    options.Filters.Add(typeof(NotFoundResultAttribute));
+                    options.Filters.Add(typeof(ContentResultFilterAttribute));
+                    options.Filters.Add(typeof(ModelStateValidationAttribute));
+                    options.Filters.Add(typeof(BadRequestResultFilterAttribute));
+
+                }).ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                })
                 .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<UserCreateCommand>();});
 
         }
@@ -73,7 +83,16 @@ namespace Web
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.UseCustomExceptionHandler();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseCustomExceptionHandler();
+            }
+
+           
 
             app.UseHsts();
 

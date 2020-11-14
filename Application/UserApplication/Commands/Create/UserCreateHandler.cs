@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Services.Identity.Manager;
-using Application.UserApplication.Model;
+using Application.UserApplication.Commands.Create.Model;
 using Domain.UserAggregate;
 using Infrastructure.Repositories.EFCore.Contracts;
 using MediatR;
@@ -28,9 +28,9 @@ namespace Application.UserApplication.Commands.Create
            var result= await _userManager.CreateAsync(user, request.Password);
 
             if(result.Succeeded)
-                return OperationResult<IdentityResult>.BuildSuccessResult(result);
+                return OperationResult<IdentityResult>.SuccessResult(result);
 
-            return OperationResult<IdentityResult>.BuildFailure("",result);
+            return OperationResult<IdentityResult>.FailureResult(string.Join(",",result.Errors),result);
         }
     }
 }

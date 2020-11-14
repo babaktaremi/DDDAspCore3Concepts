@@ -1,11 +1,11 @@
-﻿using Swashbuckle.AspNetCore.SwaggerGen;
+﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
-using System;
-using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace WebFramework.Swagger
+namespace WebFrameWork.Swagger
 {
     public class UnauthorizedResponsesOperationFilter : IOperationFilter
     {

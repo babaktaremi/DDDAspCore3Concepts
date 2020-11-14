@@ -20,7 +20,9 @@ namespace Utility.Utilities
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {
                 string tableName = entityType.GetTableName();
-                entityType.SetTableName(pluralizer.Singularize(tableName));
+
+                if (!string.IsNullOrEmpty(tableName))
+                    entityType.SetTableName(pluralizer.Pluralize(tableName));
             }
         }
 
