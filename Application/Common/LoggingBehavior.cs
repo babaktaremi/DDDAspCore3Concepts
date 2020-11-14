@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Common
 {
-    public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TResponse:class
     {
         private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
@@ -18,9 +18,7 @@ namespace Application.Common
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            //_logger.LogInformation($"Handling {typeof(TRequest).Name}");
             
-            //_logger.LogInformation($"Handled {typeof(TResponse).Name}");
 
             try
             {
@@ -30,7 +28,15 @@ namespace Application.Common
             catch (Exception e)
             {
                _logger.LogError(e,e.Message);
-               return default(TResponse);
+
+               if (typeof(TResponse).GetGenericTypeDefinition() == typeof(OperationResult<>))
+               {
+                   var response=new OperationResult<TResponse>{IsException = true};
+                   
+                   return response as TResponse; 
+               }
+
+               return default;
             }
 
           

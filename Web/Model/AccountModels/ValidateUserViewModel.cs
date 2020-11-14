@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.UserApplication.Commands.Create.Model;
 using Application.UserApplication.Queries.GenerateUserToken.Model;
-using Utility.MapperConfiguration;
+using Web.Model.Common.MapperConfiguration;
 
 namespace Web.Model.AccountModels
 {

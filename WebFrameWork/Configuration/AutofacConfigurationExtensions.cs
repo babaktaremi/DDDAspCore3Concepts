@@ -4,8 +4,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Domain.Common;
 using Infrastructure.Persistence;
-using Infrastructure.Repositories.EFCore.Contracts;
-using Infrastructure.Repositories.EFCore.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Utility;
 
@@ -16,7 +14,6 @@ namespace WebFrameWork.Configuration
         public static void AddServices(this ContainerBuilder containerBuilder)
         {
             //RegisterType > As > Liftetime
-            containerBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
 
             var commonAssembly = typeof(SiteSettings).Assembly;
             var entitiesAssembly = typeof(IEntity).Assembly;

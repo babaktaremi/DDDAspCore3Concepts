@@ -9,6 +9,7 @@ using Application.UserApplication.Commands.Create.Model;
 using Autofac;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +19,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Utility;
-using Utility.MapperConfiguration;
 using Web.Controllers;
 using WebFrameWork.Configuration;
 using WebFrameWork.Filters;
@@ -61,7 +61,7 @@ namespace Web
 
             services.AddMediatRServices();
 
-            services.AddAutoMapper(typeof(JwtService),typeof(AccountController));
+            services.AddAutoMapper(typeof(JwtService),typeof(AccountController),typeof(IUserRepository));
 
             services.AddControllers(options =>
                 {

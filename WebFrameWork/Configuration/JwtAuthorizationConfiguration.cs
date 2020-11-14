@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services.Identity.Manager;
-using Infrastructure.Repositories.EFCore.Contracts;
+using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -81,7 +81,7 @@ namespace WebFrameWork.Configuration
 
                         //Find user and token from database and perform your custom validation
                         var userId = claimsIdentity.GetUserId<int>();
-                        var user = await userRepository.GetByIdAsync(context.HttpContext.RequestAborted, userId);
+                       // var user = await userRepository.GetByIdAsync(context.HttpContext.RequestAborted, userId);
 
                         //if (user.SecurityStamp != Guid.Parse(securityStamp))
                         //    context.Fail("Token secuirty stamp is not valid.");

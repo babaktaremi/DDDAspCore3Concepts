@@ -8,12 +8,12 @@ using Application.UserApplication.Commands.Create.Model;
 using Application.UserApplication.Queries.GenerateUserToken.Model;
 using AutoMapper;
 using Domain.UserAggregate;
-using Infrastructure.Repositories.EFCore.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Model.AccountModels;
 using WebFrameWork.Api;
+using WebFrameWork.Filters;
 
 namespace Web.Controllers
 {
@@ -37,6 +37,9 @@ namespace Web.Controllers
             var command = _mapper.Map<CreateUserViewModel, UserCreateCommand>(model);
 
             var result = await _mediator.Send(command);
+
+            if(result is null)
+                return new ServerErrorResult("An Error Occured in MediatR CommandHandler");
 
             if (result.IsSuccess)
                 return Ok();

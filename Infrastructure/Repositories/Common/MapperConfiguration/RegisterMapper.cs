@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 
-namespace Web.Model.Common.MapperConfiguration
+namespace Infrastructure.Repositories.Common.MapperConfiguration
 {
     public class RegisterMapper:Profile
     {

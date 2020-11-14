@@ -2,13 +2,15 @@
 
 namespace Application.Common
 {
+   
+
     public class OperationResult<TResult>
     {
         public TResult Result { get; private set; }
 
         public bool IsSuccess { get; private set; }
         public string ErrorMessage { get; private set; }
-     
+        public bool IsException { get; set; }
 
         public static OperationResult<TResult> SuccessResult(TResult result)
         {

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Application.Common;
 using Application.Services.Identity.Manager;
 using Infrastructure.Persistence;
-using Infrastructure.Repositories.EFCore.Contracts;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
