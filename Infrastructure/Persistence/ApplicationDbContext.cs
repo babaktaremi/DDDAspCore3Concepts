@@ -20,11 +20,6 @@ namespace Infrastructure.Persistence
 
         }
         
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=MyApiDb;Integrated Security=true");
-        //    base.OnConfiguring(optionsBuilder);
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,16 +28,14 @@ namespace Infrastructure.Persistence
 
             var entitiesAssembly = typeof(IEntity).Assembly;
             modelBuilder.RegisterAllEntities<IEntity>(entitiesAssembly);
-            modelBuilder.RegisterEntityTypeConfiguration(entitiesAssembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(entitiesAssembly);
             modelBuilder.AddRestrictDeleteBehaviorConvention();
-            modelBuilder.AddSequentialGuidForIdConvention();
             modelBuilder.AddPluralizingTableNameConvention();
-           // modelBuilder.ModelBuilderQueryFilter<Link>($"{nameof(Link.IsDelete)}");
 
-          
+
         }
 
-        //#endregion
+        //TODO : Replace Save Change Override with interceptors instead
         public override int SaveChanges()
         {
             _cleanString();

@@ -17,12 +17,5 @@ namespace Domain.UserAggregate
         public Role Role { get; set; }
 
     }
-    public class RoleClaimsConfiguration : IEntityTypeConfiguration<RoleClaim>
-    {
-        public void Configure(EntityTypeBuilder<RoleClaim> builder)
-        {
-            builder.ToTable("RoleClaims");
-            builder.HasOne(u => u.Role).WithMany(u => u.Claims).HasForeignKey(u => u.RoleId).OnDelete(DeleteBehavior.Cascade);
-        }
-    }
+  
 }

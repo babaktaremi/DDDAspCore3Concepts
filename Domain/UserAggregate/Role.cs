@@ -21,11 +21,5 @@ namespace Domain.UserAggregate
 
 
     }
-    public partial class DbConfiguration : IEntityTypeConfiguration<Role>
-    {
-        public void Configure(EntityTypeBuilder<Role> builder)
-        {
-            builder.ToTable("Roles");
-        }
-    }
+   
 }

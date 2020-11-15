@@ -85,6 +85,7 @@ namespace Utility.Utilities
         /// </summary>
         /// <param name="modelBuilder"></param>
         /// <param name="assemblies">Assemblies contains Entities</param>
+        [Obsolete("Use the ApplyConfigurationsFromAssembly instead")]
         public static void RegisterEntityTypeConfiguration(this ModelBuilder modelBuilder, params Assembly[] assemblies)
         {
             MethodInfo applyGenericMethod = typeof(ModelBuilder).GetMethods().First(m => m.Name == nameof(ModelBuilder.ApplyConfiguration));

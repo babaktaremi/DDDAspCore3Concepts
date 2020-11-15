@@ -20,14 +20,7 @@ namespace Domain.UserAggregate
         public ICollection<UserLogin> Logins { get; set; }
         public ICollection<UserClaim> Claims { get; set; }
         public ICollection<UserToken> Tokens { get; set; }
+        public ICollection<UserRefreshToken> UserRefreshTokens { get; set; }
     }
 
-   public partial class DbConfiguration : IEntityTypeConfiguration<User>
-   {
-       public void Configure(EntityTypeBuilder<User> builder)
-       {
-
-           builder.ToTable("Users").Property(p => p.Id).HasColumnName("UserId");
-       }
-   }
 }

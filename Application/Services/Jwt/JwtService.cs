@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Services.Identity.Manager;
 using Domain.UserAggregate;
+using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -19,13 +20,16 @@ namespace Application.Services.Jwt
         private readonly SiteSettings _siteSetting;
         private readonly AppUserManager _userManager;
         private IUserClaimsPrincipalFactory<User> _claimsPrincipal;
+
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
         //private readonly AppUserClaimsPrincipleFactory claimsPrincipleFactory;
 
-        public JwtService(IOptionsSnapshot<SiteSettings> siteSetting, AppUserManager userManager, IUserClaimsPrincipalFactory<User> claimsPrincipal)
+        public JwtService(IOptionsSnapshot<SiteSettings> siteSetting, AppUserManager userManager, IUserClaimsPrincipalFactory<User> claimsPrincipal, IRefreshTokenRepository refreshTokenRepository)
         {
             _siteSetting = siteSetting.Value;
             _userManager = userManager;
             _claimsPrincipal = claimsPrincipal;
+            _refreshTokenRepository = refreshTokenRepository;
         }
         public async Task<AccessToken> GenerateAsync(User user)
         {
@@ -46,7 +50,7 @@ namespace Application.Services.Jwt
                 Audience = _siteSetting.JwtSettings.Audience,
                 IssuedAt = DateTime.Now,
                 NotBefore = DateTime.Now.AddMinutes(0),
-                Expires = DateTime.Now.AddMinutes(30000),
+                Expires = DateTime.Now.AddMinutes(_siteSetting.JwtSettings.ExpirationMinutes),
                 SigningCredentials = signingCredentials,
                 EncryptingCredentials = encryptingCredentials,
                 Subject = new ClaimsIdentity(claims)
@@ -60,9 +64,11 @@ namespace Application.Services.Jwt
 
             var securityToken = tokenHandler.CreateJwtSecurityToken(descriptor);
 
+            var refreshToken = await _refreshTokenRepository.CreateToken(user.Id);
+
             //string encryptedJwt = tokenHandler.WriteToken(securityToken);
 
-            return new AccessToken(securityToken);
+            return new AccessToken(securityToken,refreshToken.ToString());
         }
 
         public Task<ClaimsPrincipal> GetPrincipalFromExpiredToken(string token)
@@ -91,6 +97,23 @@ namespace Application.Services.Jwt
         {
             var user = await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
             var result = await this.GenerateAsync(user);
+            return result;
+        }
+
+        public async Task<AccessToken> RefreshToken(string refreshTokenId)
+        {
+            var refreshToken = await _refreshTokenRepository.GetTokenWithInvalidation(Guid.Parse(refreshTokenId));
+
+            if (refreshToken is null)
+                return null;
+
+            var user = await _refreshTokenRepository.GetUserByRefreshToken(Guid.Parse(refreshTokenId));
+
+            if (user is null)
+                return null;
+
+            var result = await this.GenerateAsync(user);
+
             return result;
         }
 

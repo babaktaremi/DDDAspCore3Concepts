@@ -23,6 +23,9 @@ namespace WebFrameWork.StatusCodeDescription
         LogicError = 500,
 
         [Display(Name = "Authentication Error")]
-        UnAuthorized = 401
+        UnAuthorized = 401,
+
+        [Display(Name = "Not Acceptable")]
+        NotAcceptable =406
     }
 }
