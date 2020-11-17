@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Common
 {
+    [Obsolete("Use Records instead")]
     public abstract class ValueObject
     {
         protected static bool EqualOperator(ValueObject left, ValueObject right)

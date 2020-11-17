@@ -9,5 +9,6 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Contracts
     public interface IUserRepository
     {
         Task<List<GetUserNamesDto>> GetUserNames();
+        Task<User> GetUserWithOrders(int userId);
     }
 }

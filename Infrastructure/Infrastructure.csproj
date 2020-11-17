@@ -20,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Repositories\Dapper\Contracts\" />
     <Folder Include="Repositories\Dapper\Repositories\" />
+    <Folder Include="Repositories\EFCore\OrderRepositories\Dtos\" />
   </ItemGroup>
 
 </Project>

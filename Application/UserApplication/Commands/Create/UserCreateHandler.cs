@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Services.Identity.Manager;
-using Application.UserApplication.Commands.Create.Model;
 using Domain.UserAggregate;
 using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using MediatR;

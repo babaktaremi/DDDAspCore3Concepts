@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Services.Jwt;
-using Application.UserApplication.Commands.Create.Model;
+using Application.UserApplication.Commands.Create;
 using Application.UserApplication.Queries.GenerateUserToken.Model;
 using AutoMapper;
 using Domain.UserAggregate;
@@ -56,6 +56,9 @@ namespace Web.Controllers
             var command= _mapper.Map<ValidateUserViewModel, GenerateUserTokenQuery>(model);
 
             var result = await _mediator.Send(command);
+
+            if(result is null)
+                return new ServerErrorResult("An Error Occured");
 
             if (result.IsSuccess)
                 return Ok(result.Result);

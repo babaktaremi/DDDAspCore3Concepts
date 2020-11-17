@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Services.Jwt;
-using Application.UserApplication.Commands.Create.Model;
+using Application.UserApplication.Commands.Create;
 using Autofac;
 using AutoMapper;
 using FluentValidation.AspNetCore;

@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.UserApplication.Commands.Create.Model
+namespace Application.UserApplication.Commands.Create
 {
    public class UserCreateCommand : IRequest<OperationResult<IdentityResult>>
    {

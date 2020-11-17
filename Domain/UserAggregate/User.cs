@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Common;
+using Domain.OrderAggregate;
+using Domain.OrderAggregate.Specs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -21,6 +23,25 @@ namespace Domain.UserAggregate
         public ICollection<UserClaim> Claims { get; set; }
         public ICollection<UserToken> Tokens { get; set; }
         public ICollection<UserRefreshToken> UserRefreshTokens { get; set; }
+
+
+        #region Navigation Properties
+
+        public ICollection<Order> Orders { get; set; }
+
+        #endregion
+
+
+        #region Methods
+
+        public bool CanRegisterOrder()
+        {
+            var spec = new CanRegisterNewOrderSpec();
+
+            return spec.IsSatisfiedBy(this);
+        }
+
+        #endregion
     }
 
 }

@@ -30,5 +30,11 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Repositories
 
             return userNames;
         }
+
+        public Task<User> GetUserWithOrders(int userId)
+        {
+            return base.TableNoTracking.Include(c => c.Orders.Where(c => c.UserId == userId))
+                .Where(c => c.Id == userId).FirstOrDefaultAsync();
+        }
     }
 }

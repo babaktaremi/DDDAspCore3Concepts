@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Application.Common.Marks;
 using Infrastructure.Persistence;
 using MediatR.Pipeline;
 
@@ -16,7 +17,9 @@ namespace Application.Common
 
         public async Task Process(TRequest request, TResponse response, CancellationToken cancellationToken)
         {
-            await _db.SaveChangesAsync(cancellationToken);
+            if (request is ICommittable)
+                await _db.SaveChangesAsync(cancellationToken);
+
         }
     }
 }

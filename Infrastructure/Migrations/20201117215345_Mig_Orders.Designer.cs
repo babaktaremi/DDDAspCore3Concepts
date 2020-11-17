@@ -4,14 +4,16 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201117215345_Mig_Orders")]
+    partial class Mig_Orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,7 +298,10 @@ namespace Infrastructure.Migrations
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<DateTime>("DateRegisterd")
+                            b1.Property<DateTime>("DateRegistered")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<DateTime>("dateRegisterd")
                                 .HasColumnType("datetime2");
 
                             b1.HasKey("OrderId");
@@ -312,13 +317,13 @@ namespace Infrastructure.Migrations
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<int>("NumberOfItems")
+                            b1.Property<int>("numberOfItems")
                                 .HasColumnType("int");
 
-                            b1.Property<int>("TotalPrice")
+                            b1.Property<int>("totalPrice")
                                 .HasColumnType("int");
 
-                            b1.Property<int>("UserId")
+                            b1.Property<int>("userId")
                                 .HasColumnType("int");
 
                             b1.HasKey("OrderId");

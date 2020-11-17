@@ -20,13 +20,25 @@ namespace WebFrameWork.Filters
 
             var modelState = context.ModelState;
 
-            var errors = new ValidationProblemDetails(modelState);
+            if (!modelState.IsValid)
+            {
+                var errors = new ValidationProblemDetails(modelState);
 
-            var message = ApiResultStatusCode.BadRequest.ToDisplay();
+                var message = ApiResultStatusCode.BadRequest.ToDisplay();
 
-            var apiResult = new ApiResult<IDictionary<string, string[]>>(false, ApiResultStatusCode.BadRequest, errors.Errors, message);
-            context.Result = new JsonResult(apiResult) { StatusCode = badRequestObjectResult.StatusCode };
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                var apiResult = new ApiResult<IDictionary<string, string[]>>(false, ApiResultStatusCode.BadRequest, errors.Errors, message);
+                context.Result = new JsonResult(apiResult) { StatusCode = badRequestObjectResult.StatusCode };
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                return;
+            }
+            else
+            {
+               
+
+                var apiResult = new ApiResult<object>(false, ApiResultStatusCode.BadRequest,badRequestObjectResult.Value,ApiResultStatusCode.BadRequest.ToDisplay());
+                context.Result = new JsonResult(apiResult) { StatusCode = badRequestObjectResult.StatusCode };
+                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            }
         }
     }
 }
