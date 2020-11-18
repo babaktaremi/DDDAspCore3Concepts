@@ -89,16 +89,15 @@ namespace WebFrameWork.Swagger
                 //});
                 #endregion
 
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In =ParameterLocation.Header,
                     Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Type = SecuritySchemeType.ApiKey
                 });
+
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
 
                 //OAuth2Scheme
                 //options.AddSecurityDefinition("OAuth2", new OpenApiSecurityScheme());

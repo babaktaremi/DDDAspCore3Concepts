@@ -52,7 +52,7 @@ namespace Web
 
                     webBuilder.UseSerilog((webHostBuilderContext, logger) =>
                     {
-                        logger.WriteTo.Console().MinimumLevel.Information();
+                       
 
                         var columnOpts = new ColumnOptions();
                         columnOpts.Store.Remove(StandardColumn.Properties);
@@ -68,7 +68,7 @@ namespace Web
                             .MinimumLevel.Warning();
 
                         logger.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day);
-
+                        logger.WriteTo.Console().MinimumLevel.Information();
                     });
 
                     #endregion
