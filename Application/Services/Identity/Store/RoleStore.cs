@@ -2,6 +2,7 @@
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Utility;
 
 namespace Application.Services.Identity.Store
 {

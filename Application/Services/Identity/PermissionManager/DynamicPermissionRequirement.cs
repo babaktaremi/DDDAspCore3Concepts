@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace Application.Services.Identity.PermissionManager
 {
@@ -31,7 +32,7 @@ namespace Application.Services.Identity.PermissionManager
 
             var user = _contextAccessor.HttpContext.User;
 
-            var routeData = _contextAccessor.HttpContext.Items;
+            var routeData = _contextAccessor.HttpContext.GetRouteData().Values;
 
             var controller = routeData["controller"].ToString();
 
@@ -39,7 +40,7 @@ namespace Application.Services.Identity.PermissionManager
 
             var area = routeData["area"]?.ToString();
 
-            if (_dynamicPermissionService.CanAccess(user,area,controller,action))
+            if (_dynamicPermissionService.CanAccess(user, area, controller, action))
             {
                 context.Succeed(requirement);
             }

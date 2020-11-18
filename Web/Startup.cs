@@ -110,7 +110,8 @@ namespace Web
             app.UseEndpoints(config =>
             {
                 config.MapControllers();
-
+                config.MapControllerRoute(name: "areas",
+                    "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
             //Using 'UseMvc' to configure MVC is not supported while using Endpoint Routing.

@@ -25,6 +25,8 @@ namespace WebFrameWork.Configuration
 
             services.AddScoped<IAuthorizationHandler, DynamicPermissionHandler>();
             services.AddScoped<IDynamicPermissionService, DynamicPermissionService>();
+            services.AddScoped<IRoleStore<Role>, RoleStore>();
+            services.AddScoped<IUserStore<User>, AppUserStore>();
            
             //For [ProtectPersonalData] Attribute In Identity
 
@@ -75,5 +77,6 @@ namespace WebFrameWork.Configuration
                 .AddPasswordlessLoginTotpTokenProvider();
 
         }
+
     }
 }

@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Repositories
     public class UserRepository : Repository<User>, IUserRepository, IScopedDependency
     {
         private readonly IMapper _mapper;
-
+        
         public UserRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext)
         {
             _mapper = mapper;

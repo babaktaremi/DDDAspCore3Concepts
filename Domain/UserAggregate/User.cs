@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Domain.Common;
 using Domain.OrderAggregate;
 using Domain.OrderAggregate.Specs;
+using Domain.UserAggregate.Specs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

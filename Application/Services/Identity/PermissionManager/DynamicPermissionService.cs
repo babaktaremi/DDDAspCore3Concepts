@@ -7,7 +7,13 @@ namespace Application.Services.Identity.PermissionManager
     {
         public bool CanAccess(ClaimsPrincipal user, string area, string controller, string action)
         {
-            var key = $"{area}:{controller}:{action}";
+            if (user.IsInRole("admin"))
+            {
+                return true;
+            }
+
+
+            var key = $"{area}:{controller}:";
 
             var userClaims = user.FindAll(ConstantPolicies.DynamicPermission);
 
