@@ -10,7 +10,7 @@ using Domain.UserAggregate;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.AdminApplication.Command.AddNewAdmin
+namespace Application.AdminApplication.Commands.AddNewAdmin
 {
    public class AddNewAdminHandler:IRequestHandler<AddNewAdminRequest,OperationResult<IdentityResult>>
    {

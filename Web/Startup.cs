@@ -49,6 +49,8 @@ namespace Web
 
             services.AddCustomIdentity();
 
+            services.ConfigureSecurityStamp();
+
             services.AddHttpContextAccessor();
 
             services.AddJwtAuthentication(_siteSetting.JwtSettings);

@@ -25,7 +25,7 @@ namespace Application.Services.Identity.PermissionManager
     public class RoleManagerService : IRoleManagerService, IScopedDependency
     {
         private readonly AppRoleManager _roleManger;
-       // private readonly RoleStore _roleStore;
+        // private readonly RoleStore _roleStore;
         private readonly IMapper _mapper;
         private readonly IActionDescriptorCollectionProvider _actionDescriptor;
         private readonly AppUserManager _userManager;
@@ -44,7 +44,7 @@ namespace Application.Services.Identity.PermissionManager
 
         public async Task<List<GetRolesDto>> GetRoles()
         {
-            var result = await _roleManger.Roles.Where(c=>!c.Name.Equals("admin")).Select(r => _mapper.Map<Role, GetRolesDto>(r)).ToListAsync();
+            var result = await _roleManger.Roles.Where(c => !c.Name.Equals("admin")).Select(r => _mapper.Map<Role, GetRolesDto>(r)).ToListAsync();
             return result;
         }
 
@@ -68,9 +68,20 @@ namespace Application.Services.Identity.PermissionManager
             if (role == null)
                 return false;
 
-            var result =await _roleManger.DeleteAsync(role);
+            var users = await _userManager.GetUsersInRoleAsync(role.Name);
 
-            return result.Succeeded;
+            foreach (var user in users)
+            {
+                await _userManager.RemoveFromRoleAsync(user, role.Name);
+                await _userManager.UpdateSecurityStampAsync(user);
+            }
+
+            _db.RemoveRange(role.Claims);
+            _db.RemoveRange(role.Users);
+            _db.Remove(role);
+            await _db.SaveChangesAsync();
+
+            return true;
             //var userRoles = role.Claims.ToList();
 
             //var claims = role.Claims.ToList();
@@ -206,7 +217,7 @@ namespace Application.Services.Identity.PermissionManager
                         x.ClaimValue == permission);
 
                 if (roleClaim != null)
-                { 
+                {
                     _db.RemoveRange(roleClaim);
                 }
             }

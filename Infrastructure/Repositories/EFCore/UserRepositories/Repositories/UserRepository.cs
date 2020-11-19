@@ -36,5 +36,13 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Repositories
             return base.TableNoTracking.Include(c => c.Orders.Where(c => c.UserId == userId))
                 .Where(c => c.Id == userId).FirstOrDefaultAsync();
         }
+
+        public void DeleteAdminUser(User user)
+        {
+            if (user.UserRoles.Any())
+            {
+                base.Delete(user);
+            }
+        }
     }
 }

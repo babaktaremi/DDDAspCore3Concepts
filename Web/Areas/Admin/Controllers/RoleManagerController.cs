@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.AdminApplication.Command.AddNewAdmin;
+using Application.AdminApplication.Commands.AddNewAdmin;
 using Application.Services.Identity.Dtos;
 using Application.Services.Identity.PermissionManager;
 using AutoMapper;
@@ -19,7 +19,7 @@ namespace Web.Areas.Admin.Controllers
     [ApiController]
     [Area("Admin")]
     [Route("api/v{version:apiVersion}/Admin/Roles")]
-    [Authorize(policy: nameof(ConstantPolicies.DynamicPermission))]
+    [Authorize(Roles = "admin")]
     public class RoleManagerController : BaseController
     {
         private readonly IRoleManagerService _roleManagerService;
@@ -67,7 +67,7 @@ namespace Web.Areas.Admin.Controllers
                 Select(permissions => 
                     new RolePermissionsViewModel
                     {
-                        RoleId = result.RoleId, 
+                        RoleId = roleId, 
                         RouteName = !string.IsNullOrEmpty(permissions.ControllerDisplayName) ? $"{permissions.ControllerDisplayName}" : permissions.ControllerName, 
                         RouteValue = permissions.Key, 
                         HasPermission = result.Role.Claims.Any(x => x.ClaimType == ConstantPolicies.DynamicPermission && x.ClaimValue.ToLower() == permissions.Key.ToLower())
@@ -88,24 +88,18 @@ namespace Web.Areas.Admin.Controllers
             return new ServerErrorResult("Could Not Add Permissions To Role");
         }
 
-        [HttpPost("NewAdmin")]
-        public async Task<IActionResult> CreateNewAdmin(AddAdminViewModel model)
+        [HttpPost("DeleteRole")]
+        public async Task<IActionResult> DeleteRole(DeleteRoleViewModel model)
         {
-            var request = _mapper.Map<AddAdminViewModel, AddNewAdminRequest>(model);
+            var result = await _roleManagerService.DeleteRole(model.RoleId);
 
-            var result = await _mediator.Send(request);
+            if (result)
+                return Ok();
 
-            if (!result.IsSuccess)
-            {
-                if (result.Result is null)
-                    return BadRequest(result.ErrorMessage);
-
-                base.AddErrors(result.Result);
-                return BadRequest(ModelState);
-            }
-
-            return Ok();
+            return new ServerErrorResult("Could Not Delete The Role");
         }
+
+       
 
     }
 }

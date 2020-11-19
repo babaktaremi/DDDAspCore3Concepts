@@ -10,5 +10,6 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Contracts
     {
         Task<List<GetUserNamesDto>> GetUserNames();
         Task<User> GetUserWithOrders(int userId);
+        void DeleteAdminUser(User user);
     }
 }

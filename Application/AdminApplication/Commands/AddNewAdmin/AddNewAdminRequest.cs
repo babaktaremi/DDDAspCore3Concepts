@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Common;
-using Application.Common.Marks;
+﻿using Application.Common;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Application.AdminApplication.Command.AddNewAdmin
+namespace Application.AdminApplication.Commands.AddNewAdmin
 {
   public class AddNewAdminRequest:IRequest<OperationResult<IdentityResult>>
     {
