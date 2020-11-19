@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Services.Identity.SeedDatabaseService;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
+using WebFrameWork.Logging;
 
 namespace Web
 {
@@ -21,22 +23,19 @@ namespace Web
     {
         public static async Task Main(string[] args)
         {
-           var webHost= CreateHostBuilder(args).Build();
+            Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+            var webHost = CreateHostBuilder(args).Build();
 
             #region Seeding Database
 
-            var scope = webHost.Services.CreateScope();
+            //using var scope = webHost.Services.CreateScope();
 
-            using (scope)
-            {
-                var seedService = scope.ServiceProvider.GetRequiredService<ISeedDataBase>();
+            //var seedService = scope.ServiceProvider.GetRequiredService<ISeedDataBase>();
 
-                await seedService.Seed();
-            }
+            //await seedService.Seed();
+            #endregion
 
             await webHost.StartAsync();
-
-            #endregion
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -46,32 +45,7 @@ namespace Web
                 {
 
                     webBuilder.UseStartup<Startup>();
+                }).UseSerilog(LoggingConfiguration.ConfigureLogger);
 
-
-                    #region Serilog Configuration
-
-                    webBuilder.UseSerilog((webHostBuilderContext, logger) =>
-                    {
-                       
-
-                        var columnOpts = new ColumnOptions();
-                        columnOpts.Store.Remove(StandardColumn.Properties);
-                        columnOpts.Store.Add(StandardColumn.LogEvent);
-                        columnOpts.LogEvent.DataLength = 4096;
-                        columnOpts.PrimaryKey = columnOpts.Id;
-                        columnOpts.Id.DataType = SqlDbType.Int;
-
-
-                        logger.WriteTo
-                            .MSSqlServer(webHostBuilderContext.Configuration
-                                .GetConnectionString("SqlServer"), "SystemLogs", autoCreateSqlTable: true)
-                            .MinimumLevel.Warning();
-
-                        logger.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day);
-                        logger.WriteTo.Console().MinimumLevel.Information();
-                    });
-
-                    #endregion
-                });
     }
 }

@@ -94,7 +94,7 @@ namespace WebFrameWork.Swagger
                     Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
                     In =ParameterLocation.Header,
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
+                    Type = SecuritySchemeType.ApiKey,
                 });
 
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
@@ -145,7 +145,6 @@ namespace WebFrameWork.Swagger
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
-                options.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
 
                 #region Customizing
                 //// Display

@@ -110,8 +110,8 @@ namespace WebFrameWork.Configuration
                             if (!refreshToken.Any())
                             {
                                 var response = new ApiResult(false,
-                                    ApiResultStatusCode.UnAuthorized, "Token is Not Valid");
-                                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                                    ApiResultStatusCode.UnAuthorized, "Refresh Token Not Found");
+                                context.Response.StatusCode = StatusCodes.Status424FailedDependency;
                                await context.Response.WriteAsJsonAsync(response);
                             }
                             else
@@ -121,10 +121,10 @@ namespace WebFrameWork.Configuration
 
                                 if (newToken is null)
                                 {
-                                    var failResponse = new ApiResult(false,
-                                        ApiResultStatusCode.UnAuthorized, "Token is Not Valid");
-                                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                                    await context.Response.WriteAsJsonAsync(failResponse);
+                                    var failedResponse = new ApiResult(false,
+                                        ApiResultStatusCode.UnAuthorized, "Refresh Token Not Valid");
+                                    context.Response.StatusCode = StatusCodes.Status424FailedDependency;
+                                    await context.Response.WriteAsJsonAsync(failedResponse);
 
                                 }
 

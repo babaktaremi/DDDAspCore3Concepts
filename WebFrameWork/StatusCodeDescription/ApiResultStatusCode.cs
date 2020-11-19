@@ -26,6 +26,9 @@ namespace WebFrameWork.StatusCodeDescription
         UnAuthorized = 401,
 
         [Display(Name = "Not Acceptable")]
-        NotAcceptable =406
+        NotAcceptable =406,
+
+        [Display(Name="Failed Dependency")]
+        FailedDependency=424
     }
 }
