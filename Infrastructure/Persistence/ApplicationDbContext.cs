@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence
 
             var entitiesAssembly = typeof(IEntity).Assembly;
             modelBuilder.RegisterAllEntities<IEntity>(entitiesAssembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(entitiesAssembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             modelBuilder.AddRestrictDeleteBehaviorConvention();
             modelBuilder.AddPluralizingTableNameConvention();
 

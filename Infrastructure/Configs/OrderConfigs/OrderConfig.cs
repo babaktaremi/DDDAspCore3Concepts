@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Domain.Common;
 using Domain.OrderAggregate;
 using Domain.OrderAggregate.Enums;
-using Domain.OrderAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Domain.Configs.OrderConfigs
+namespace Infrastructure.Configs.OrderConfigs
 {
    public class OrderConfig:IEntityTypeConfiguration<Order>
     {
@@ -19,6 +14,7 @@ namespace Domain.Configs.OrderConfigs
             builder.OwnsOne(c => c.Date);
             builder.OwnsOne(c => c.Detail);
             builder.HasOne(c => c.User).WithMany(c => c.Orders).HasForeignKey(c => c.UserId);
+
 
             builder.Property(f => f.OrderState)
                 .HasColumnName("OrderState")
