@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configs.OrderConfigs
 {
-   public class OrderConfig:IEntityTypeConfiguration<Order>
+   internal class OrderConfig:IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configs.UserConfigs
 {
-   public class RoleClaimConfig:IEntityTypeConfiguration<RoleClaim>
+    internal class RoleClaimConfig:IEntityTypeConfiguration<RoleClaim>
     {
         public void Configure(EntityTypeBuilder<RoleClaim> builder)
         {

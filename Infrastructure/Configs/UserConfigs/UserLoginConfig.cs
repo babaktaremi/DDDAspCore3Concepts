@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configs.UserConfigs
 {
-   public class UserLoginConfig:IEntityTypeConfiguration<UserLogin>
+    internal class UserLoginConfig:IEntityTypeConfiguration<UserLogin>
     {
         public void Configure(EntityTypeBuilder<UserLogin> builder)
         {

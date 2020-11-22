@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configs.UserConfigs
 {
-   public class UserTokenConfig:IEntityTypeConfiguration<UserToken>
+    internal class UserTokenConfig:IEntityTypeConfiguration<UserToken>
     {
         public void Configure(EntityTypeBuilder<UserToken> builder)
         {

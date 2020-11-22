@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configs.UserConfigs
 {
-   public class RefreshTokenConfig:IEntityTypeConfiguration<UserRefreshToken>
+    internal class RefreshTokenConfig:IEntityTypeConfiguration<UserRefreshToken>
     {
         public void Configure(EntityTypeBuilder<UserRefreshToken> builder)
         {
