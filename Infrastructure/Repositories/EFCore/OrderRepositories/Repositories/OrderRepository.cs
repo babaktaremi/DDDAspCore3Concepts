@@ -7,6 +7,7 @@ using Domain.OrderAggregate;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories.EFCore.Common.BaseRepository;
 using Infrastructure.Repositories.EFCore.OrderRepositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Utility;
 
 namespace Infrastructure.Repositories.EFCore.OrderRepositories.Repositories
@@ -22,5 +23,9 @@ namespace Infrastructure.Repositories.EFCore.OrderRepositories.Repositories
            base.Add(order);
         }
 
+        public Task<Order> GetOrder(Guid orderId)
+        {
+            return base.Table.FirstOrDefaultAsync(o => o.Id == orderId);
+        }
     }
 }

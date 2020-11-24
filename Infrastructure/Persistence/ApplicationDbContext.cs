@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain.Common;
 using Domain.UserAggregate;
+using Infrastructure.EventDispatchers.EventDispatchHandlers;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Utility.Utilities;
@@ -14,10 +16,11 @@ namespace Infrastructure.Persistence
 
     public class ApplicationDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
-        public ApplicationDbContext(DbContextOptions options)
+        private readonly IEventDispatchHandler _dispatchHandler;
+        public ApplicationDbContext(DbContextOptions options, IEventDispatchHandler dispatchHandler)
             : base(options)
         {
-
+            _dispatchHandler = dispatchHandler;
         }
         
 
@@ -39,25 +42,33 @@ namespace Infrastructure.Persistence
         public override int SaveChanges()
         {
             _cleanString();
-            return base.SaveChanges();
+            var result= base.SaveChanges();
+            _handleDomainEvents();
+            return result;
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             _cleanString();
-            return base.SaveChanges(acceptAllChangesOnSuccess);
+            var result= base.SaveChanges(acceptAllChangesOnSuccess);
+            _handleDomainEvents();
+            return result;
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             _cleanString();
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            var result= base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            _handleDomainEvents();
+            return result;
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             _cleanString();
-            return base.SaveChangesAsync(cancellationToken);
+            var result= base.SaveChangesAsync(cancellationToken);
+            _handleDomainEvents();
+            return result;
         }
 
         private void _cleanString()
@@ -88,6 +99,16 @@ namespace Infrastructure.Persistence
             }
         }
 
-       
+        private void _handleDomainEvents()
+        {
+            List<DomainEntity> entities = ChangeTracker.Entries().Where(x => x.Entity is DomainEntity)
+                .Select(x => (DomainEntity) x.Entity).ToList();
+
+            foreach (var domainEntity in entities)
+            {
+                _dispatchHandler.HandleEvents(domainEntity.DomainEvents);
+                domainEntity.ClearDomainEvents();
+            }
+        }
     }
 }

@@ -1,0 +1,294 @@
+2020-11-24 14:20:15.031 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-24 14:20:16.663 +03:30 [INF] Now listening on: https://localhost:5001
+2020-11-24 14:20:16.665 +03:30 [INF] Now listening on: http://localhost:5000
+2020-11-24 14:20:16.668 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-24 14:20:16.669 +03:30 [INF] Hosting environment: Development
+2020-11-24 14:20:16.671 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2020-11-24 14:20:16.727 +03:30 [INF] Application is shutting down...
+2020-11-24 14:20:17.958 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2020-11-24 14:20:18.973 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 1021.0361ms
+2020-11-24 14:20:21.734 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2020-11-24 14:20:23.367 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2020-11-24 14:20:23.513 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 145.8688ms
+2020-11-24 14:20:24.671 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2020-11-24 14:20:25.575 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 903.6765ms
+2020-11-24 14:20:43.893 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:20:43.931 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:20:43.943 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:20:44.111 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:20:46.130 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:20:46.828 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 2668.1673ms
+2020-11-24 14:20:46.844 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:20:46.860 +03:30 [ERR] An unhandled exception has occurred while executing the request.
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating λ:MediatR.IPipelineBehavior`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][] -> MediatR.Pipeline.RequestPostProcessorBehavior`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> λ:MediatR.Pipeline.IRequestPostProcessor`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][] -> Application.Common.CommitCommandPostProcessor`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Infrastructure.Persistence.ApplicationDbContext.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Autofac.Core.Activators.Reflection.DefaultConstructorFinder' on type 'Infrastructure.Persistence.ApplicationDbContext' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Infrastructure.EventDispatchers.EventDispatchHandlers.EventDispatchHandler dispatchHandler' of constructor 'Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions, Infrastructure.EventDispatchers.EventDispatchHandlers.EventDispatchHandler)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveOptionalService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.ResolveOptional(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.ResolveOptional(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetService(Type serviceType)
+   at MediatR.ServiceFactoryExtensions.GetInstances[T](ServiceFactory factory)
+   at MediatR.Internal.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, CancellationToken cancellationToken, ServiceFactory serviceFactory)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Web.Controllers.OrderControllerController.CancelOrder(String orderId) in F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web\Controllers\OrderControllerController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-11-24 14:20:47.677 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 500 - text/plain 3784.2414ms
+2020-11-24 14:23:22.753 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-24 14:23:24.152 +03:30 [INF] Now listening on: https://localhost:5001
+2020-11-24 14:23:24.169 +03:30 [INF] Now listening on: http://localhost:5000
+2020-11-24 14:23:24.222 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-24 14:23:24.227 +03:30 [INF] Hosting environment: Development
+2020-11-24 14:23:24.236 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2020-11-24 14:23:24.421 +03:30 [INF] Application is shutting down...
+2020-11-24 14:23:25.000 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2020-11-24 14:23:25.557 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 561.0575ms
+2020-11-24 14:23:29.429 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2020-11-24 14:23:30.652 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2020-11-24 14:23:30.833 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 180.7592ms
+2020-11-24 14:23:31.206 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2020-11-24 14:23:31.659 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 453.1924ms
+2020-11-24 14:23:39.431 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:23:39.484 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:23:39.503 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:23:39.647 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:23:41.246 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:23:41.625 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 1952.0834ms
+2020-11-24 14:23:41.633 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:23:41.646 +03:30 [ERR] An unhandled exception has occurred while executing the request.
+Autofac.Core.DependencyResolutionException: An exception was thrown while activating λ:MediatR.IPipelineBehavior`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][] -> MediatR.Pipeline.RequestPostProcessorBehavior`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> λ:MediatR.Pipeline.IRequestPostProcessor`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]][] -> Application.Common.CommitCommandPostProcessor`2[[Application.OrderApplication.CancelOrder.CancelOrderCommand, Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Application.Common.OperationResult`1[[System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Infrastructure.Persistence.ApplicationDbContext.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Autofac.Core.Activators.Reflection.DefaultConstructorFinder' on type 'Infrastructure.Persistence.ApplicationDbContext' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Infrastructure.EventDispatchers.EventDispatchHandlers.EventDispatchHandler dispatchHandler' of constructor 'Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions, Infrastructure.EventDispatchers.EventDispatchHandlers.EventDispatchHandler)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.GetAllBindings(ConstructorBinder[] availableConstructors, IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<ConfigurePipeline>b__11_0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(ResolveRequest request)
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveOptionalService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.ResolveOptional(IComponentContext context, Type serviceType, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.ResolveOptional(IComponentContext context, Type serviceType)
+   at Autofac.Extensions.DependencyInjection.AutofacServiceProvider.GetService(Type serviceType)
+   at MediatR.ServiceFactoryExtensions.GetInstances[T](ServiceFactory factory)
+   at MediatR.Internal.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, CancellationToken cancellationToken, ServiceFactory serviceFactory)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Web.Controllers.OrderControllerController.CancelOrder(String orderId) in F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web\Controllers\OrderControllerController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-11-24 14:23:42.230 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 500 - text/plain 2798.9942ms
+2020-11-24 14:25:11.342 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-24 14:25:12.698 +03:30 [INF] Now listening on: https://localhost:5001
+2020-11-24 14:25:12.705 +03:30 [INF] Now listening on: http://localhost:5000
+2020-11-24 14:25:12.710 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-24 14:25:12.713 +03:30 [INF] Hosting environment: Development
+2020-11-24 14:25:12.716 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2020-11-24 14:25:12.820 +03:30 [INF] Application is shutting down...
+2020-11-24 14:25:13.573 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2020-11-24 14:25:13.922 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 355.5425ms
+2020-11-24 14:25:17.830 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2020-11-24 14:25:19.529 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2020-11-24 14:25:19.856 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 327.2277ms
+2020-11-24 14:25:20.122 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2020-11-24 14:25:20.720 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 597.8875ms
+2020-11-24 14:25:28.920 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:25:28.985 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:25:29.010 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:25:29.346 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:25:30.833 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:25:36.527 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:25:40.132 +03:30 [INF] Executed DbCommand (344ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [o].[Id], [o].[IsFinally], [o].[OrderState], [o].[UserId], [o].[Date_DateRegisterd], [o].[Detail_NumberOfItems], [o].[Detail_TotalPrice], [o].[Detail_UserId]
+FROM [Orders] AS [o]
+WHERE [o].[Id] = @__orderId_0
+2020-11-24 14:25:41.426 +03:30 [INF] Executed DbCommand (11ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Orders] SET [OrderState] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+2020-11-24 14:25:55.481 +03:30 [INF] Executed action method Web.Controllers.OrderControllerController.CancelOrder (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 24625.1565ms.
+2020-11-24 14:25:55.508 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2020-11-24 14:25:55.542 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 26179.7246ms
+2020-11-24 14:25:55.547 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:25:55.561 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 200 - application/json;+charset=utf-8 26641.1832ms
+2020-11-24 14:27:02.830 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:27:26.568 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:27:27.098 +03:30 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2020-11-24 14:27:27.138 +03:30 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2020-11-24 14:27:27.196 +03:30 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2020-11-24 14:47:10.467 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-24 14:47:11.788 +03:30 [INF] Now listening on: https://localhost:5001
+2020-11-24 14:47:11.791 +03:30 [INF] Now listening on: http://localhost:5000
+2020-11-24 14:47:11.793 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-24 14:47:11.796 +03:30 [INF] Hosting environment: Development
+2020-11-24 14:47:11.800 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2020-11-24 14:47:11.875 +03:30 [INF] Application is shutting down...
+2020-11-24 14:47:13.142 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2020-11-24 14:47:13.672 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 535.1351ms
+2020-11-24 14:47:16.891 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2020-11-24 14:47:23.767 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2020-11-24 14:47:23.958 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 190.4096ms
+2020-11-24 14:47:25.570 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2020-11-24 14:47:26.255 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 685.2198ms
+2020-11-24 14:47:34.790 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:47:34.822 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:47:34.838 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:47:34.935 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:47:36.591 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:47:41.602 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:47:44.470 +03:30 [INF] Executed DbCommand (252ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [o].[Id], [o].[IsFinally], [o].[OrderState], [o].[UserId], [o].[Date_DateRegisterd], [o].[Detail_NumberOfItems], [o].[Detail_TotalPrice], [o].[Detail_UserId]
+FROM [Orders] AS [o]
+WHERE [o].[Id] = @__orderId_0
+2020-11-24 14:47:49.933 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Orders] SET [OrderState] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+2020-11-24 14:47:50.077 +03:30 [INF] Executed action method Web.Controllers.OrderControllerController.CancelOrder (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 13459.3327ms.
+2020-11-24 14:47:50.113 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2020-11-24 14:47:50.179 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 15216.822ms
+2020-11-24 14:47:50.187 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:47:50.211 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 200 - application/json;+charset=utf-8 15421.1260ms
+2020-11-24 14:48:45.655 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-11-24 14:48:47.261 +03:30 [INF] Now listening on: https://localhost:5001
+2020-11-24 14:48:47.266 +03:30 [INF] Now listening on: http://localhost:5000
+2020-11-24 14:48:47.270 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2020-11-24 14:48:47.274 +03:30 [INF] Hosting environment: Development
+2020-11-24 14:48:47.305 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2020-11-24 14:48:47.420 +03:30 [INF] Application is shutting down...
+2020-11-24 14:48:48.063 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2020-11-24 14:48:48.413 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 352.5923ms
+2020-11-24 14:48:51.928 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2020-11-24 14:48:52.064 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 136.5534ms
+2020-11-24 14:48:52.267 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2020-11-24 14:48:52.432 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2020-11-24 14:48:52.966 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 699.3247ms
+2020-11-24 14:48:59.183 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:48:59.218 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:48:59.228 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:48:59.328 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:49:00.800 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:49:05.103 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:49:07.789 +03:30 [INF] Executed DbCommand (333ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [o].[Id], [o].[IsFinally], [o].[OrderState], [o].[UserId], [o].[Date_DateRegisterd], [o].[Detail_NumberOfItems], [o].[Detail_TotalPrice], [o].[Detail_UserId]
+FROM [Orders] AS [o]
+WHERE [o].[Id] = @__orderId_0
+2020-11-24 14:49:14.143 +03:30 [INF] Executed DbCommand (4ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Orders] SET [OrderState] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+2020-11-24 14:49:14.353 +03:30 [INF] Executed action method Web.Controllers.OrderControllerController.CancelOrder (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 13522.7764ms.
+2020-11-24 14:49:14.424 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2020-11-24 14:49:14.537 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 15178.6557ms
+2020-11-24 14:49:14.547 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:49:14.592 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 200 - application/json;+charset=utf-8 15408.9931ms
+2020-11-24 14:49:25.492 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:49:25.518 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:49:25.524 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:49:25.530 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:49:25.630 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:49:25.729 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:49:25.769 +03:30 [INF] Executed DbCommand (2ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [o].[Id], [o].[IsFinally], [o].[OrderState], [o].[UserId], [o].[Date_DateRegisterd], [o].[Detail_NumberOfItems], [o].[Detail_TotalPrice], [o].[Detail_UserId]
+FROM [Orders] AS [o]
+WHERE [o].[Id] = @__orderId_0
+2020-11-24 14:49:29.250 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Orders] SET [OrderState] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+2020-11-24 14:49:29.328 +03:30 [INF] Executed action method Web.Controllers.OrderControllerController.CancelOrder (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 3689.6405ms.
+2020-11-24 14:49:29.341 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2020-11-24 14:49:29.355 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 3801.2722ms
+2020-11-24 14:49:29.372 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:49:29.385 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 200 - application/json;+charset=utf-8 3893.0923ms
+2020-11-24 14:50:03.424 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0
+2020-11-24 14:50:03.434 +03:30 [INF] No CORS policy found for the specified request.
+2020-11-24 14:50:03.440 +03:30 [INF] Executing endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:50:03.444 +03:30 [INF] Route matched with {action = "CancelOrder", controller = "OrderController", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CancelOrder(System.String) on controller Web.Controllers.OrderControllerController (Web).
+2020-11-24 14:50:03.513 +03:30 [INF] Executing action method Web.Controllers.OrderControllerController.CancelOrder (Web) - Validation state: "Valid"
+2020-11-24 14:50:03.544 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2020-11-24 14:50:03.562 +03:30 [INF] Executed DbCommand (4ms) [Parameters=[@__orderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [o].[Id], [o].[IsFinally], [o].[OrderState], [o].[UserId], [o].[Date_DateRegisterd], [o].[Detail_NumberOfItems], [o].[Detail_TotalPrice], [o].[Detail_UserId]
+FROM [Orders] AS [o]
+WHERE [o].[Id] = @__orderId_0
+2020-11-24 14:50:03.585 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Orders] SET [OrderState] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;
+2020-11-24 14:50:03.600 +03:30 [INF] Executed action method Web.Controllers.OrderControllerController.CancelOrder (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 78.8643ms.
+2020-11-24 14:50:03.610 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2020-11-24 14:50:03.614 +03:30 [INF] Executed action Web.Controllers.OrderControllerController.CancelOrder (Web) in 155.3349ms
+2020-11-24 14:50:03.621 +03:30 [INF] Executed endpoint 'Web.Controllers.OrderControllerController.CancelOrder (Web)'
+2020-11-24 14:50:03.631 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/Orders/CancelOrder?orderId=2b974fa2-c07f-4e49-1a11-08d88b48fc0e - 0 - 200 - application/json;+charset=utf-8 206.6361ms

@@ -1,10 +1,33 @@
-﻿namespace Domain.Common
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
+namespace Domain.Common
 {
     public interface IEntity
     {
     }
 
-    public abstract class BaseEntity<TKey> : IEntity
+    public abstract class DomainEntity
+    {
+        [NotMapped]
+        private readonly IList<IDomainEvent> _domainEvents = new List<IDomainEvent>();
+
+        [NotMapped]
+        public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList();
+
+        public void RaiseDomainEvent(IDomainEvent domainEvent)
+        {
+            _domainEvents.Add(domainEvent);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+    }
+
+    public abstract class BaseEntity<TKey> : DomainEntity,IEntity
     {
         public TKey Id { get; protected set; }
 
@@ -46,5 +69,6 @@
 
     public abstract class BaseEntity : BaseEntity<int>
     {
+       
     }
 }

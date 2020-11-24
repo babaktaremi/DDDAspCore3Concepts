@@ -10,5 +10,7 @@ namespace Infrastructure.Repositories.EFCore.OrderRepositories.Contracts
    public interface IOrderRepository
    {
        void CreateOrder(Order order);
+
+       Task<Order> GetOrder(Guid orderId);
    }
 }

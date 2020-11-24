@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Common;
 using Domain.OrderAggregate.Enums;
+using Domain.OrderAggregate.Events;
 using Domain.OrderAggregate.Specs;
 using Domain.OrderAggregate.ValueObjects;
 using Domain.UserAggregate;
@@ -39,6 +40,13 @@ namespace Domain.OrderAggregate
 
             return cancelSpec.IsSatisfiedBy(this);
         }
+
+        public void CancelOrder()
+        {
+            this.OrderState=OrderState.Cancelled;
+            RaiseDomainEvent(new OrderCanceledEvent{OrderId = this.Id,CanceledDate =DateTime.Now });
+        }
+
 
         #endregion
     }

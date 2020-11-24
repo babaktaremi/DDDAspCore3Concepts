@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.OrderApplication.CancelOrder;
 using Application.OrderApplication.Commands.Create;
 using AutoMapper;
 using MediatR;
@@ -44,6 +45,21 @@ namespace Web.Controllers
                 return BadRequest(result.ErrorMessage);
 
             return Ok(result.Result);
+        }
+
+        [HttpPost("CancelOrder")]
+        [AllowAnonymous]
+        public async Task<IActionResult> CancelOrder(string orderId)
+        {
+            var command = await _mediator.Send(new CancelOrderCommand {OrderId = orderId});
+
+            if(command is null)
+                return new ServerErrorResult("There Was a Problem");
+
+            if (command.IsSuccess)
+                return Ok();
+
+            return BadRequest(command.ErrorMessage);
         }
     }
 }
