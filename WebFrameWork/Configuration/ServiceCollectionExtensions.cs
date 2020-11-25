@@ -6,6 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common;
 using Application.Services.Identity.Manager;
+using Application.Services.Jwt;
+using Application.UserApplication.Decorators;
+using Application.UserApplication.Queries.GenerateUserToken.Model;
 using Infrastructure.Persistence;
 using MediatR;
 using MediatR.Pipeline;
@@ -73,6 +76,9 @@ namespace WebFrameWork.Configuration
             
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidateCommandBehavior<,>));
+            //services
+            //    .AddTransient<
+            //        IPipelineBehavior<GenerateUserTokenQuery, OperationResult<AccessToken>>, TokenGeneratorDecorator>();
             //services.AddScoped(typeof(IRequestPostProcessor<,>), typeof(CommitCommandPostProcessor<,>));
         }
 

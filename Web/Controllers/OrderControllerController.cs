@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.OrderApplication.CancelOrder;
+using Application.OrderApplication.Commands.CancelOrder;
 using Application.OrderApplication.Commands.Create;
 using AutoMapper;
 using MediatR;

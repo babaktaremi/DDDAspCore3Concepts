@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common;
 using Infrastructure.Repositories.EFCore.OrderRepositories.Contracts;
 using MediatR;
 
-namespace Application.OrderApplication.CancelOrder
+namespace Application.OrderApplication.Commands.CancelOrder
 {
    public class CancelOrderCommandHandler:IRequestHandler<CancelOrderCommand,OperationResult<bool>>
    {
