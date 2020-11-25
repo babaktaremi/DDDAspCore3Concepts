@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Common;
+using Domain.OrderAggregate.Enums;
 
 namespace Domain.OrderAggregate.Specs
 {
@@ -12,7 +13,7 @@ namespace Domain.OrderAggregate.Specs
     {
         public override Expression<Func<Order, bool>> ToExpression()
         {
-            return order => order.IsFinally == false /*&& order.Date.DateRegisterd < DateTime.Now.AddMinutes(-20)*/;
+            return order => order.IsFinally == false && order.OrderState.Equals(OrderState.Paid);
         }
     }
 }

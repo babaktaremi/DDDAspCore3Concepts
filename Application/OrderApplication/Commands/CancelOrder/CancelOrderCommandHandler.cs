@@ -23,6 +23,9 @@ namespace Application.OrderApplication.Commands.CancelOrder
             if(order is null)
                 return OperationResult<bool>.FailureResult("Order Not Found");
 
+            if(!order.CanBeCanceled())
+                return OperationResult<bool>.FailureResult("You Cannot Cancel Order");
+
             order.CancelOrder();
 
             return OperationResult<bool>.SuccessResult(true);

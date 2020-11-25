@@ -6,7 +6,7 @@ using MediatR.Pipeline;
 
 namespace Application.Common
 {
-    public class CommitCommandPostProcessor<TRequest, TResponse> : IRequestPostProcessor<TRequest, TResponse>
+    public class CommitCommandPostProcessor<TRequest, TResponse> : IRequestPostProcessor<TRequest, TResponse> where TResponse : class
     {
         private readonly ApplicationDbContext _db;
 
@@ -18,8 +18,19 @@ namespace Application.Common
         public async Task Process(TRequest request, TResponse response, CancellationToken cancellationToken)
         {
             if (request is ICommittable)
-                await _db.SaveChangesAsync(cancellationToken);
+            {
+                if(!response.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(OperationResult<>)))
+                {
+                    await _db.SaveChangesAsync(cancellationToken);
+                    return;
+                }
 
+
+                dynamic result = response;
+
+                if (result.IsSuccess)
+                    await _db.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }
