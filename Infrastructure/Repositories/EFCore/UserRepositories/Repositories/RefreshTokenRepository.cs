@@ -21,14 +21,14 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Repositories
 
         public async Task<Guid> CreateToken(int userId)
         {
-            var token = await base.Table.OrderByDescending(c => c.CreatedAt).Where(c => c.IsValid && c.UserId == userId).FirstOrDefaultAsync();
+            //var token = await base.Table.OrderByDescending(c => c.CreatedAt).Where(c => c.IsValid && c.UserId == userId).FirstOrDefaultAsync();
 
-            if (token !=null)
-            {
-                return token.Id;
-            }
+            //if (token !=null)
+            //{
+            //    return token.Id;
+            //}
 
-            token = new UserRefreshToken { IsValid = true, UserId = userId };
+           var token = new UserRefreshToken { IsValid = true, UserId = userId };
             base.Add(token);
 
             await base.CommitAsync(CancellationToken.None);
