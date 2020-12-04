@@ -8,26 +8,26 @@ namespace Domain.Common
     {
     }
 
-    public abstract class DomainEntity
-    {
-        [NotMapped]
-        private readonly IList<IDomainEvent> _domainEvents = new List<IDomainEvent>();
+    //public abstract class DomainEntity
+    //{
+    //    [NotMapped]
+    //    private readonly IList<IDomainEvent> _domainEvents = new List<IDomainEvent>();
 
-        [NotMapped]
-        public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList();
+    //    [NotMapped]
+    //    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList();
 
-        public void RaiseDomainEvent(IDomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
+    //    public void RaiseDomainEvent(IDomainEvent domainEvent)
+    //    {
+    //        _domainEvents.Add(domainEvent);
+    //    }
 
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
-        }
-    }
+    //    public void ClearDomainEvents()
+    //    {
+    //        _domainEvents.Clear();
+    //    }
+    //}
 
-    public abstract class BaseEntity<TKey> : DomainEntity,IEntity
+    public abstract class BaseEntity<TKey> : IEntity
     {
         public TKey Id { get; protected set; }
 

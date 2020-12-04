@@ -7,12 +7,12 @@ using Domain.Common;
 using Domain.OrderAggregate.Enums;
 using Domain.OrderAggregate.Events;
 using Domain.OrderAggregate.Specs;
-using Domain.OrderAggregate.ValueObjects;
 using Domain.UserAggregate;
+using Domain.ValueObjects;
 
 namespace Domain.OrderAggregate
 {
-   public class Order:BaseEntity<Guid>
+   public class Order:AggregateRoot<Guid>
     {
         public Order()
         {

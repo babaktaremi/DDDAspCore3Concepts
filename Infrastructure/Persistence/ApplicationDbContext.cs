@@ -101,8 +101,8 @@ namespace Infrastructure.Persistence
 
         private void _handleDomainEvents()
         {
-            List<DomainEntity> entities = ChangeTracker.Entries().Where(x => x.Entity is DomainEntity)
-                .Select(x => (DomainEntity) x.Entity).ToList();
+            List<IAggregateRoot> entities = ChangeTracker.Entries().Where(x => x.Entity is IAggregateRoot)
+                .Select(x => (IAggregateRoot) x.Entity).ToList();
 
             foreach (var domainEntity in entities)
             {

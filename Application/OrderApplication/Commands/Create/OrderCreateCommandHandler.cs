@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common;
 using Domain.OrderAggregate;
-using Domain.OrderAggregate.ValueObjects;
+using Domain.ValueObjects;
 using Infrastructure.Repositories.EFCore.OrderRepositories.Contracts;
 using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using MediatR;
