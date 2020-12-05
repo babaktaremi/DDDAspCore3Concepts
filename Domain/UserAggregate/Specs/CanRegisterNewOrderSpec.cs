@@ -9,7 +9,8 @@ namespace Domain.UserAggregate.Specs
     {
         public override Expression<Func<User, bool>> ToExpression()
         {
-            return user => user.Orders.OrderByDescending(c => c.Date.DateRegisterd).LastOrDefault().IsFinally;
+
+            return user => user.Orders.OrderByDescending(c => c.Date.DateRegisterd).LastOrDefault().IsFinally || !user.Orders.Any();
         }
     }
 }

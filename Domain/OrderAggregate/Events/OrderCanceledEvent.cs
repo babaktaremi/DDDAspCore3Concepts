@@ -17,5 +17,6 @@ namespace Domain.OrderAggregate.Events
         {
             return $"Order With Id {OrderId} Canceled At {CanceledDate}";
         }
+
     }
 }

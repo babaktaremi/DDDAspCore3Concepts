@@ -11,6 +11,6 @@ namespace Domain.Common
     /// </summary>
    public interface IDomainEvent
     {
-
+        
     }
 }

@@ -28,8 +28,11 @@ namespace Application.OrderApplication.Commands.Create
        {
            var user = await _userRepository.GetUserWithOrders(request.UserId);
 
-           if(!user.CanRegisterOrder())
-               return OperationResult<OrderCreateCommandResult>.FailureResult("You have Unfinished Order");
+           if (user.Orders.Any())
+           {
+               if (!user.CanRegisterOrder())
+                   return OperationResult<OrderCreateCommandResult>.FailureResult("You have Unfinished Order");
+            }
 
            var order = new Order
            {
@@ -39,6 +42,8 @@ namespace Application.OrderApplication.Commands.Create
            };
 
            _orderRepository.CreateOrder(order);
+
+           order.RegisterOrder(request.UserId,DateTime.Now);
 
            return OperationResult<OrderCreateCommandResult>.SuccessResult(new OrderCreateCommandResult
                {RegisteredDate = DateTime.Now, State = order.OrderState.Name,OrderId = order.Id});

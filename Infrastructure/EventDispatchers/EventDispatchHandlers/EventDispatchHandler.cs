@@ -6,43 +6,39 @@ using System.Threading.Tasks;
 using Domain.Common;
 using Domain.OrderAggregate.Events;
 using Infrastructure.EventDispatchers.EventDispatchServices;
+using Infrastructure.EventDispatchers.EventDispatchServices.Common;
 using Utility;
 
 namespace Infrastructure.EventDispatchers.EventDispatchHandlers
 {
     public interface IEventDispatchHandler
     {
-        void HandleEvents(IEnumerable<IDomainEvent> domainEvents);
+        Task HandleEvents(IEnumerable<IDomainEvent> domainEvents);
     }
 
     public class EventDispatchHandler:IScopedDependency, IEventDispatchHandler
     {
-       private readonly IConsoleEventDispatcher _consoleEventDispatcher;
+       private readonly IEnumerable<IEventDispatcher> _eventDispatcher;
 
-       public EventDispatchHandler(IConsoleEventDispatcher consoleEventDispatcher)
+       public EventDispatchHandler(IEnumerable<IEventDispatcher> eventDispatcher)
        {
-           _consoleEventDispatcher = consoleEventDispatcher;
+           _eventDispatcher = eventDispatcher;
        }
 
 
-       public void HandleEvents(IEnumerable<IDomainEvent> domainEvents)
+       public async Task HandleEvents(IEnumerable<IDomainEvent> domainEvents)
        {
            foreach (var domainEvent in domainEvents)
            {
-               DispatchEvents(domainEvent);
+             await  DispatchEvents(domainEvent);
            }
        }
 
-       private void DispatchEvents(IDomainEvent domainEvent)
+       private async Task DispatchEvents(IDomainEvent domainEvent)
        {
-           switch (domainEvent)
+           foreach (var eventDispatcher in _eventDispatcher)
            {
-                case OrderCanceledEvent orderCanceled:
-                    _consoleEventDispatcher.WriteToConsole(orderCanceled.ToString());
-                    break;
-
-                default:
-                    throw new ArgumentException("Event Not Recognized");
+              await eventDispatcher.Handle(domainEvent);
            }
        }
    }

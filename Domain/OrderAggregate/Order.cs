@@ -47,6 +47,10 @@ namespace Domain.OrderAggregate
             RaiseDomainEvent(new OrderCanceledEvent{OrderId = this.Id,CanceledDate =DateTime.Now });
         }
 
+        public void RegisterOrder(int userId, DateTime date)
+        {
+            RaiseDomainEvent(new OrderRegisteredEvent{DateTime = date,UserId = userId});
+        }
 
         #endregion
     }

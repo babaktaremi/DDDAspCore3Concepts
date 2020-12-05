@@ -43,7 +43,7 @@ namespace Infrastructure.Persistence
         {
             _cleanString();
             var result= base.SaveChanges();
-            _handleDomainEvents();
+            _handleDomainEvents().GetAwaiter().GetResult();
             return result;
         }
 
@@ -51,23 +51,23 @@ namespace Infrastructure.Persistence
         {
             _cleanString();
             var result= base.SaveChanges(acceptAllChangesOnSuccess);
-            _handleDomainEvents();
+            _handleDomainEvents().GetAwaiter().GetResult();
             return result;
         }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             _cleanString();
-            var result= base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-            _handleDomainEvents();
+            var result=await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+           await _handleDomainEvents();
             return result;
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             _cleanString();
-            var result= base.SaveChangesAsync(cancellationToken);
-            _handleDomainEvents();
+            var result=await base.SaveChangesAsync(cancellationToken);
+           await _handleDomainEvents();
             return result;
         }
 
@@ -99,14 +99,14 @@ namespace Infrastructure.Persistence
             }
         }
 
-        private void _handleDomainEvents()
+        private async Task _handleDomainEvents()
         {
             List<IAggregateRoot> entities = ChangeTracker.Entries().Where(x => x.Entity is IAggregateRoot)
                 .Select(x => (IAggregateRoot) x.Entity).ToList();
 
             foreach (var domainEntity in entities)
             {
-                _dispatchHandler.HandleEvents(domainEntity.DomainEvents);
+               await _dispatchHandler.HandleEvents(domainEntity.DomainEvents);
                 domainEntity.ClearDomainEvents();
             }
         }
