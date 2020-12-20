@@ -55,5 +55,21 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Repositories
 
             return user;
         }
+
+        public async Task RemoveUserOldTokens(int userId, CancellationToken cancellationToken)
+        {
+            var date = DateTime.Now.AddDays(-3);
+
+            var tokens = await base.Table
+                .Where(t => t.UserId == userId)
+                .Where(t => !t.IsValid || t.CreatedAt <= date)
+                .ToListAsync(cancellationToken: cancellationToken);
+
+            if (tokens.Any())
+            {
+                base.DeleteRange(tokens);
+                await base.CommitAsync(cancellationToken);
+            }
+        }
     }
 }

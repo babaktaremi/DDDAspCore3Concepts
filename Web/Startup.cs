@@ -9,6 +9,7 @@ using Application.UserApplication.Commands.Create;
 using Autofac;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Infrastructure.EventDispatchers.EventDispatchServices.UserEventServices.UserLoginEventHandler;
 using Infrastructure.Repositories.EFCore.UserRepositories.Contracts;
 using MediatR;
 using MediatR.Pipeline;
@@ -64,6 +65,8 @@ namespace Web
             services.AddMediatRServices();
 
             services.AddAutoMapper(typeof(JwtService),typeof(AccountController),typeof(IUserRepository));
+
+            services.AddHostedService<UserLoginEventWorker>();
 
             services.AddControllers(options =>
                 {

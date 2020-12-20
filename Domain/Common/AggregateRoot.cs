@@ -23,7 +23,7 @@ namespace Domain.Common
         //[NotMapped]
         //public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList();
 
-
+        [NotMapped]
         public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList();
 
         public void RaiseDomainEvent(IDomainEvent domainEvent)

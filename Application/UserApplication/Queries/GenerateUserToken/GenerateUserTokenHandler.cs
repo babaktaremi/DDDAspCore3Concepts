@@ -40,7 +40,9 @@ namespace Application.UserApplication.Queries.GenerateUserToken
                return OperationResult<AccessToken>.FailureResult("User Password Incorrect");
 
 
-           var token = await _jwtService.GenerateAsync(user);
+           user.UserLoggedIn();
+
+            var token = await _jwtService.GenerateAsync(user);
 
            return OperationResult<AccessToken>.SuccessResult(token);
        }

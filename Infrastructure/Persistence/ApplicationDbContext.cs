@@ -21,8 +21,15 @@ namespace Infrastructure.Persistence
             : base(options)
         {
             _dispatchHandler = dispatchHandler;
+            base.SavingChanges+=OnSavingChanges;
         }
-        
+
+        private async void OnSavingChanges(object sender, SavingChangesEventArgs e)
+        {
+           _cleanString();
+           await _handleDomainEvents();
+        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,37 +46,37 @@ namespace Infrastructure.Persistence
         }
 
         //TODO : Replace Save Change Override with interceptors instead
-        public override int SaveChanges()
-        {
-            _cleanString();
-            var result= base.SaveChanges();
-            _handleDomainEvents().GetAwaiter().GetResult();
-            return result;
-        }
+        //public override int SaveChanges()
+        //{
+        //    _cleanString();
+        //    var result= base.SaveChanges();
+        //    _handleDomainEvents().GetAwaiter().GetResult();
+        //    return result;
+        //}
 
-        public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        {
-            _cleanString();
-            var result= base.SaveChanges(acceptAllChangesOnSuccess);
-            _handleDomainEvents().GetAwaiter().GetResult();
-            return result;
-        }
+        //public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        //{
+        //    _cleanString();
+        //    var result= base.SaveChanges(acceptAllChangesOnSuccess);
+        //    _handleDomainEvents().GetAwaiter().GetResult();
+        //    return result;
+        //}
 
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        {
-            _cleanString();
-            var result=await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-           await _handleDomainEvents();
-            return result;
-        }
+        //public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        //{
+        //    _cleanString();
+        //    var result=await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        //   await _handleDomainEvents();
+        //    return result;
+        //}
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            _cleanString();
-            var result=await base.SaveChangesAsync(cancellationToken);
-           await _handleDomainEvents();
-            return result;
-        }
+        //public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        //{
+        //    _cleanString();
+        //    var result=await base.SaveChangesAsync(cancellationToken);
+        //   await _handleDomainEvents();
+        //    return result;
+        //}
 
         private void _cleanString()
         {

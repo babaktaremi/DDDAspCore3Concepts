@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Domain.Common;
 using Domain.OrderAggregate.Events;
-using Infrastructure.EventDispatchers.EventDispatchHandlers;
 using Infrastructure.EventDispatchers.EventDispatchServices.Common;
 using Microsoft.Extensions.Logging;
 using Utility;
 
-namespace Infrastructure.EventDispatchers.EventDispatchServices
+namespace Infrastructure.EventDispatchers.EventDispatchServices.OrderEventServices
 {
    public class OrderRegisteredEventDispatcher:IEventDispatcher,IScopedDependency
    {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Domain.UserAggregate;
 
@@ -12,5 +13,6 @@ namespace Infrastructure.Repositories.EFCore.UserRepositories.Contracts
        Task<Guid> CreateToken(int userId);
        Task<UserRefreshToken> GetTokenWithInvalidation(Guid id);
        Task<User> GetUserByRefreshToken(Guid tokenId);
-   }
+       Task RemoveUserOldTokens(int userId, CancellationToken cancellationToken);
+    }
 }
