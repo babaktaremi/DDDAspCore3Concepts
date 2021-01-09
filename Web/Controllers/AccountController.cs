@@ -5,6 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Services.Jwt;
 using Application.UserApplication.Commands.Create;
+using Application.UserApplication.Commands.RegisterAuthenticatorToken;
+using Application.UserApplication.Queries.ConfirmTwoFactor;
+using Application.UserApplication.Queries.GenerateTwoFactorAuthenticator;
 using Application.UserApplication.Queries.GenerateUserToken.Model;
 using AutoMapper;
 using Domain.UserAggregate;
@@ -50,7 +53,7 @@ namespace Web.Controllers
         }
 
 
-        [HttpPost("GetToken")]
+        [HttpPost("TokenRequest")]
         public async Task<IActionResult> ValidateUser(ValidateUserViewModel model)
         {
             var command= _mapper.Map<ValidateUserViewModel, GenerateUserTokenQuery>(model);
@@ -68,6 +71,18 @@ namespace Web.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("GetToken")]
+        public async Task<IActionResult> GetToken(GetTokenViewModel model)
+        {
+            var command = await _mediator.Send(new ConfirmTwoFactorQuery {Code = model.Code, UserKey = model.UserKey});
+
+            if (command.IsSuccess)
+                return Ok(command.Result);
+
+            ModelState.AddModelError("",command.ErrorMessage);
+            return BadRequest(ModelState);
+        }
+
         [Authorize]
         [HttpPost("UserInfo")]
         public IActionResult GetUserInfo()
@@ -75,6 +90,28 @@ namespace Web.Controllers
             var userName = User.Identity.Name;
 
             return Ok(userName);
+        }
+
+        [Authorize]
+        [HttpGet("AuthenticatorKey")]
+        public async Task<IActionResult> GetAuthenticatorKey()
+        {
+            var query = await _mediator.Send(new GenerateTwoFactorAuthenticatorQuery());
+
+            return Ok(query.Result);
+        }
+
+        [Authorize]
+        [HttpPost("RegisterAuthenticatorKey")]
+        public async Task<IActionResult> RegisterAuthKey(RegisterAuthKeyViewModel model)
+        {
+            var command = await _mediator.Send(new RegisterAuthenticatorCommand {Code = model.Code});
+
+            if (command.IsSuccess)
+                return Ok();
+
+            ModelState.AddModelError("",command.ErrorMessage);
+            return BadRequest(ModelState);
         }
     }
 }

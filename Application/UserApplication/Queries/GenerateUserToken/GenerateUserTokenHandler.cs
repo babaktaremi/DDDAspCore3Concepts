@@ -9,11 +9,12 @@ using Application.Services.Identity.Manager;
 using Application.Services.Jwt;
 using Application.UserApplication.Queries.GenerateUserToken.Model;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace Application.UserApplication.Queries.GenerateUserToken
 {
-   public class GenerateUserTokenHandler:IRequestHandler<GenerateUserTokenQuery,OperationResult<AccessToken>>
+   public class GenerateUserTokenHandler:IRequestHandler<GenerateUserTokenQuery,OperationResult<GenerateTokenQueryResult>>
    {
        private readonly IJwtService _jwtService;
        private readonly AppUserManager _userManager;
@@ -27,24 +28,25 @@ namespace Application.UserApplication.Queries.GenerateUserToken
            _signInManager = signInManager;
        }
 
-       public async Task<OperationResult<AccessToken>> Handle(GenerateUserTokenQuery request, CancellationToken cancellationToken)
+       public async Task<OperationResult<GenerateTokenQueryResult>> Handle(GenerateUserTokenQuery request, CancellationToken cancellationToken)
        {
            var user = await _userManager.FindByNameAsync(request.UserName);
 
            if(user is null)
-               return OperationResult<AccessToken>.FailureResult("User Not Found");
+               return OperationResult<GenerateTokenQueryResult>.FailureResult("User Not Found");
 
            var passwordValidator = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 
            if(passwordValidator == PasswordVerificationResult.Failed)
-               return OperationResult<AccessToken>.FailureResult("User Password Incorrect");
+               return OperationResult<GenerateTokenQueryResult>.FailureResult("User Password Incorrect");
 
 
            user.UserLoggedIn();
 
-            var token = await _jwtService.GenerateAsync(user);
 
-           return OperationResult<AccessToken>.SuccessResult(token);
+                return OperationResult<GenerateTokenQueryResult>.SuccessResult(new GenerateTokenQueryResult
+                {UserKey = user.GeneratedCode
+                });
        }
     }
 }
