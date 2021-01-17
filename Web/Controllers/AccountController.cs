@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Services.Jwt;
 using Application.UserApplication.Commands.Create;
+using Application.UserApplication.Commands.GetNormalToken;
 using Application.UserApplication.Commands.RegisterAuthenticatorToken;
 using Application.UserApplication.Queries.ConfirmTwoFactor;
 using Application.UserApplication.Queries.GenerateTwoFactorAuthenticator;
@@ -52,6 +53,20 @@ namespace Web.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("NormalTokenRequest")]
+        public async Task<IActionResult> GetNormalToken(GetNormalTokenViewModel model)
+        {
+            var query = await _mediator.Send(new GetNormalTokenQuery
+                {UserName = model.UserName, Password = model.Password});
+
+            if (!query.IsSuccess)
+            {
+                ModelState.AddModelError("",query.ErrorMessage);
+                return BadRequest(ModelState);
+            }
+
+            return Ok(query.Result);
+        }
 
         [HttpPost("TokenRequest")]
         public async Task<IActionResult> ValidateUser(ValidateUserViewModel model)

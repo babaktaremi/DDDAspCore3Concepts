@@ -1,0 +1,349 @@
+2021-01-17 23:34:07.816 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-01-17 23:34:10.098 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:34:10.900 +03:30 [INF] Now listening on: https://localhost:5001
+2021-01-17 23:34:10.915 +03:30 [INF] Now listening on: http://localhost:5000
+2021-01-17 23:34:10.919 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2021-01-17 23:34:10.922 +03:30 [INF] Hosting environment: Development
+2021-01-17 23:34:10.924 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2021-01-17 23:34:11.019 +03:30 [INF] Application is shutting down...
+2021-01-17 23:34:11.977 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-01-17 23:34:12.971 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 1000.6674ms
+2021-01-17 23:34:16.032 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2021-01-17 23:34:24.230 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-01-17 23:34:24.420 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 189.9996ms
+2021-01-17 23:34:25.489 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-01-17 23:34:26.178 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 689.3781ms
+2021-01-17 23:34:41.407 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/CreateUser application/json 43
+2021-01-17 23:34:41.430 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:34:41.433 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.CreateUser (Web)'
+2021-01-17 23:34:41.495 +03:30 [INF] Route matched with {action = "CreateUser", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateUser(Web.Model.AccountModels.CreateUserViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:34:42.159 +03:30 [INF] Executing action method Web.Controllers.AccountController.CreateUser (Web) - Validation state: "Valid"
+2021-01-17 23:34:42.345 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:34:44.863 +03:30 [INF] Executed DbCommand (200ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:34:46.219 +03:30 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [GeneratedCode], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+SELECT [UserId]
+FROM [Users]
+WHERE @@ROWCOUNT = 1 AND [UserId] = scope_identity();
+2021-01-17 23:34:46.559 +03:30 [INF] Executed action method Web.Controllers.AccountController.CreateUser (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 4365.1903ms.
+2021-01-17 23:34:46.624 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2021-01-17 23:34:46.772 +03:30 [INF] Executed action Web.Controllers.AccountController.CreateUser (Web) in 5242.553ms
+2021-01-17 23:34:46.788 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.CreateUser (Web)'
+2021-01-17 23:34:46.812 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/CreateUser application/json 43 - 200 - application/json;+charset=utf-8 5404.7151ms
+2021-01-17 23:35:02.876 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/GetToken application/json 38
+2021-01-17 23:35:02.889 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:35:02.891 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetToken (Web)'
+2021-01-17 23:35:02.903 +03:30 [INF] Route matched with {action = "GetToken", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetToken(Web.Model.AccountModels.GetTokenViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:35:02.992 +03:30 [INF] Executing action method Web.Controllers.AccountController.GetToken (Web) - Validation state: "Valid"
+2021-01-17 23:35:03.025 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:35:03.165 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@__request_UserKey_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[GeneratedCode] = @__request_UserKey_0
+2021-01-17 23:35:03.178 +03:30 [INF] Executed action method Web.Controllers.AccountController.GetToken (Web), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 182.5695ms.
+2021-01-17 23:35:03.184 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Collections.Generic.IDictionary`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:35:03.207 +03:30 [INF] Executed action Web.Controllers.AccountController.GetToken (Web) in 299.6473ms
+2021-01-17 23:35:03.213 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetToken (Web)'
+2021-01-17 23:35:03.221 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/GetToken application/json 38 - 400 - application/json;+charset=utf-8 344.4677ms
+2021-01-17 23:35:21.558 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/TokenRequest application/json 43
+2021-01-17 23:35:21.560 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:35:21.562 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.ValidateUser (Web)'
+2021-01-17 23:35:21.579 +03:30 [INF] Route matched with {action = "ValidateUser", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidateUser(Web.Model.AccountModels.ValidateUserViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:35:21.693 +03:30 [INF] Executing action method Web.Controllers.AccountController.ValidateUser (Web) - Validation state: "Valid"
+2021-01-17 23:35:21.720 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:35:21.808 +03:30 [INF] Executed DbCommand (67ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:35:21.863 +03:30 [INF] Executed action method Web.Controllers.AccountController.ValidateUser (Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 161.1621ms.
+2021-01-17 23:35:21.880 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:35:21.893 +03:30 [INF] Executed action Web.Controllers.AccountController.ValidateUser (Web) in 285.6319ms
+2021-01-17 23:35:21.897 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.ValidateUser (Web)'
+2021-01-17 23:35:21.921 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/TokenRequest application/json 43 - 200 - application/json;+charset=utf-8 362.7566ms
+2021-01-17 23:45:11.996 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-01-17 23:45:13.568 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:45:13.957 +03:30 [INF] Now listening on: https://localhost:5001
+2021-01-17 23:45:13.958 +03:30 [INF] Now listening on: http://localhost:5000
+2021-01-17 23:45:13.960 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2021-01-17 23:45:13.962 +03:30 [INF] Hosting environment: Development
+2021-01-17 23:45:13.963 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2021-01-17 23:45:14.021 +03:30 [INF] Application is shutting down...
+2021-01-17 23:45:14.325 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-01-17 23:45:14.588 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 268.6892ms
+2021-01-17 23:45:18.232 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-01-17 23:45:18.358 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 125.7437ms
+2021-01-17 23:45:19.031 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2021-01-17 23:45:19.446 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-01-17 23:45:20.035 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 589.7809ms
+2021-01-17 23:45:35.836 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43
+2021-01-17 23:45:35.859 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:45:35.863 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:45:35.923 +03:30 [INF] Route matched with {action = "GetNormalToken", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNormalToken(Web.Model.AccountModels.GetNormalTokenViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:45:36.347 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:45:37.282 +03:30 [INF] Executed DbCommand (97ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:45:37.818 +03:30 [INF] Executed DbCommand (62ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2021-01-17 23:45:37.907 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2021-01-17 23:45:37.939 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2021-01-17 23:45:39.523 +03:30 [INF] Executed DbCommand (59ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [UserRefreshTokens] ([Id], [CreatedAt], [IsValid], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+2021-01-17 23:45:39.709 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:45:39.809 +03:30 [INF] Executed action Web.Controllers.AccountController.GetNormalToken (Web) in 3856.2774ms
+2021-01-17 23:45:39.828 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:45:39.873 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43 - 200 - application/json;+charset=utf-8 4037.5506ms
+2021-01-17 23:46:13.448 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - -
+2021-01-17 23:46:13.744 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:46:13.803 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:46:13.888 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:46:13.955 +03:30 [INF] Authorization was successful.
+2021-01-17 23:46:13.963 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:46:13.983 +03:30 [INF] Route matched with {action = "GetAuthenticatorKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAuthenticatorKey() on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:46:14.064 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:46:14.098 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:46:14.219 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:46:14.366 +03:30 [INF] Executed DbCommand (61ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [UserTokens] ([LoginProvider], [Name], [UserId], [GeneratedTime], [Value])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2021-01-17 23:46:14.421 +03:30 [INF] Executed DbCommand (17ms) [Parameters=[@p15='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p16='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [GeneratedCode] = @p4, [LockoutEnabled] = @p5, [LockoutEnd] = @p6, [NormalizedEmail] = @p7, [NormalizedUserName] = @p8, [PasswordHash] = @p9, [PhoneNumber] = @p10, [PhoneNumberConfirmed] = @p11, [SecurityStamp] = @p12, [TwoFactorEnabled] = @p13, [UserName] = @p14
+WHERE [UserId] = @p15 AND [ConcurrencyStamp] = @p16;
+SELECT @@ROWCOUNT;
+2021-01-17 23:46:14.482 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:46:14.496 +03:30 [INF] Executed action Web.Controllers.AccountController.GetAuthenticatorKey (Web) in 492.3416ms
+2021-01-17 23:46:14.515 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:46:14.531 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - - - 200 - application/json;+charset=utf-8 1083.3943ms
+2021-01-17 23:47:01.831 +03:30 [INF] User profile is available. Using 'C:\Users\Babak\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-01-17 23:47:04.833 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:47:05.367 +03:30 [INF] Now listening on: https://localhost:5001
+2021-01-17 23:47:05.371 +03:30 [INF] Now listening on: http://localhost:5000
+2021-01-17 23:47:05.374 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2021-01-17 23:47:05.375 +03:30 [INF] Hosting environment: Development
+2021-01-17 23:47:05.377 +03:30 [INF] Content root path: F:\Asp Core 3 Standard Framwork DDD Aproach\Web\Web
+2021-01-17 23:47:05.441 +03:30 [INF] Application is shutting down...
+2021-01-17 23:47:06.383 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-01-17 23:47:07.014 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 404 0 - 636.7132ms
+2021-01-17 23:47:10.451 +03:30 [INF] Waiting for the host to be disposed. Ensure all 'IHost' instances are wrapped in 'using' blocks.
+2021-01-17 23:47:14.464 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-01-17 23:47:14.612 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 147.3959ms
+2021-01-17 23:47:14.869 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-01-17 23:47:15.239 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 370.4619ms
+2021-01-17 23:47:27.048 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - -
+2021-01-17 23:47:28.081 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:47:29.226 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:47:32.352 +03:30 [INF] Executed DbCommand (547ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:47:33.116 +03:30 [INF] Bearer was not authenticated. Failure message: Token secuirty stamp is not valid.
+2021-01-17 23:47:33.143 +03:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2021-01-17 23:47:33.370 +03:30 [INF] AuthenticationScheme: Bearer was challenged.
+2021-01-17 23:47:33.415 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - - - 401 - application/json;+charset=utf-8 6366.8193ms
+2021-01-17 23:47:56.126 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43
+2021-01-17 23:47:56.142 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:47:56.147 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:47:56.256 +03:30 [INF] Route matched with {action = "GetNormalToken", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNormalToken(Web.Model.AccountModels.GetNormalTokenViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:47:56.987 +03:30 [INF] Executing action method Web.Controllers.AccountController.GetNormalToken (Web) - Validation state: "Valid"
+2021-01-17 23:47:57.078 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:47:57.147 +03:30 [INF] Executed DbCommand (10ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:47:57.425 +03:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2021-01-17 23:47:57.562 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[ClaimType], [u].[ClaimValue], [u].[UserId]
+FROM [UserClaims] AS [u]
+WHERE [u].[UserId] = @__user_Id_0
+2021-01-17 23:47:57.635 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[UserId] = @__userId_0
+2021-01-17 23:47:58.739 +03:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [UserRefreshTokens] ([Id], [CreatedAt], [IsValid], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+2021-01-17 23:47:59.043 +03:30 [INF] Executed action method Web.Controllers.AccountController.GetNormalToken (Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2025.9395ms.
+2021-01-17 23:47:59.119 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:47:59.184 +03:30 [INF] Executed action Web.Controllers.AccountController.GetNormalToken (Web) in 2890.6662ms
+2021-01-17 23:47:59.198 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:47:59.208 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43 - 200 - application/json;+charset=utf-8 3081.6256ms
+2021-01-17 23:48:23.310 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - -
+2021-01-17 23:48:23.315 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:48:23.320 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:48:23.332 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:48:23.351 +03:30 [INF] Authorization was successful.
+2021-01-17 23:48:23.355 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:48:23.372 +03:30 [INF] Route matched with {action = "GetAuthenticatorKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAuthenticatorKey() on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:48:23.642 +03:30 [INF] Executing action method Web.Controllers.AccountController.GetAuthenticatorKey (Web) - Validation state: "Valid"
+2021-01-17 23:48:28.434 +03:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:48:44.510 +03:30 [INF] Executed action method Web.Controllers.AccountController.GetAuthenticatorKey (Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 20860.5643ms.
+2021-01-17 23:48:44.530 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:48:44.562 +03:30 [INF] Executed action Web.Controllers.AccountController.GetAuthenticatorKey (Web) in 21118.9347ms
+2021-01-17 23:48:44.573 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:48:44.589 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - - - 200 - application/json;+charset=utf-8 21278.5132ms
+2021-01-17 23:49:02.189 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - -
+2021-01-17 23:49:02.193 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:49:02.196 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:49:02.207 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:49:02.216 +03:30 [INF] Authorization was successful.
+2021-01-17 23:49:02.219 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:49:02.226 +03:30 [INF] Route matched with {action = "GetAuthenticatorKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAuthenticatorKey() on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:49:02.344 +03:30 [INF] Executing action method Web.Controllers.AccountController.GetAuthenticatorKey (Web) - Validation state: "Valid"
+2021-01-17 23:49:04.720 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:49:04.763 +03:30 [INF] Executed action method Web.Controllers.AccountController.GetAuthenticatorKey (Web), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2408.8793ms.
+2021-01-17 23:49:04.782 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Object, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:49:04.796 +03:30 [INF] Executed action Web.Controllers.AccountController.GetAuthenticatorKey (Web) in 2559.5078ms
+2021-01-17 23:49:04.812 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetAuthenticatorKey (Web)'
+2021-01-17 23:49:04.825 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - - - 200 - application/json;+charset=utf-8 2635.7385ms
+2021-01-17 23:52:41.702 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 17
+2021-01-17 23:52:41.732 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:52:41.742 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:52:41.747 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:52:41.766 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:52:41.791 +03:30 [INF] Authorization was successful.
+2021-01-17 23:52:41.795 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:52:41.813 +03:30 [INF] Route matched with {action = "RegisterAuthKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterAuthKey(Web.Model.AccountModels.RegisterAuthKeyViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:52:41.988 +03:30 [INF] Executing action method Web.Controllers.AccountController.RegisterAuthKey (Web) - Validation state: "Valid"
+2021-01-17 23:52:47.600 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:52:47.874 +03:30 [WRN] VerifyTwoFactorTokenAsync() failed for user.
+2021-01-17 23:52:53.194 +03:30 [INF] Executed action method Web.Controllers.AccountController.RegisterAuthKey (Web), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 11197.6417ms.
+2021-01-17 23:52:53.227 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Collections.Generic.IDictionary`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:52:53.282 +03:30 [INF] Executed action Web.Controllers.AccountController.RegisterAuthKey (Web) in 11458.6768ms
+2021-01-17 23:52:53.292 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:52:53.306 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 17 - 400 - application/json;+charset=utf-8 11605.0963ms
+2021-01-17 23:53:01.258 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 43
+2021-01-17 23:53:01.264 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:53:01.268 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:53:01.272 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:53:01.288 +03:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:53:01.303 +03:30 [INF] Authorization was successful.
+2021-01-17 23:53:01.309 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:53:01.314 +03:30 [INF] Route matched with {action = "RegisterAuthKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterAuthKey(Web.Model.AccountModels.RegisterAuthKeyViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:53:01.491 +03:30 [INF] Executing action method Web.Controllers.AccountController.RegisterAuthKey (Web) - Validation state: "Valid"
+2021-01-17 23:53:05.153 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:53:05.354 +03:30 [WRN] VerifyTwoFactorTokenAsync() failed for user.
+2021-01-17 23:53:08.439 +03:30 [INF] Executed action method Web.Controllers.AccountController.RegisterAuthKey (Web), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 6937.6661ms.
+2021-01-17 23:53:08.458 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Collections.Generic.IDictionary`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:53:08.481 +03:30 [INF] Executed action Web.Controllers.AccountController.RegisterAuthKey (Web) in 7153.4083ms
+2021-01-17 23:53:08.496 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:53:08.517 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 43 - 400 - application/json;+charset=utf-8 7258.3777ms
+2021-01-17 23:53:38.406 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 17
+2021-01-17 23:53:38.412 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:53:38.416 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:53:38.420 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:53:38.436 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:53:38.452 +03:30 [INF] Authorization was successful.
+2021-01-17 23:53:38.459 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:53:38.463 +03:30 [INF] Route matched with {action = "RegisterAuthKey", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterAuthKey(Web.Model.AccountModels.RegisterAuthKeyViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:53:38.568 +03:30 [INF] Executing action method Web.Controllers.AccountController.RegisterAuthKey (Web) - Validation state: "Valid"
+2021-01-17 23:53:41.722 +03:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[LoginProvider], [u].[Name], [u].[GeneratedTime], [u].[Value]
+FROM [UserTokens] AS [u]
+WHERE (([u].[UserId] = @__p_0) AND ([u].[LoginProvider] = @__p_1)) AND ([u].[Name] = @__p_2)
+2021-01-17 23:53:44.777 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:53:44.971 +03:30 [INF] Executed DbCommand (7ms) [Parameters=[@p15='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p16='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Users] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [GeneratedCode] = @p4, [LockoutEnabled] = @p5, [LockoutEnd] = @p6, [NormalizedEmail] = @p7, [NormalizedUserName] = @p8, [PasswordHash] = @p9, [PhoneNumber] = @p10, [PhoneNumberConfirmed] = @p11, [SecurityStamp] = @p12, [TwoFactorEnabled] = @p13, [UserName] = @p14
+WHERE [UserId] = @p15 AND [ConcurrencyStamp] = @p16;
+SELECT @@ROWCOUNT;
+2021-01-17 23:53:45.103 +03:30 [INF] Executed action method Web.Controllers.AccountController.RegisterAuthKey (Web), returned result Microsoft.AspNetCore.Mvc.OkResult in 6530.0377ms.
+2021-01-17 23:53:45.117 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult'.
+2021-01-17 23:53:45.133 +03:30 [INF] Executed action Web.Controllers.AccountController.RegisterAuthKey (Web) in 6657.9065ms
+2021-01-17 23:53:45.146 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.RegisterAuthKey (Web)'
+2021-01-17 23:53:45.160 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/RegisterAuthenticatorKey application/json 17 - 200 - application/json;+charset=utf-8 6753.8922ms
+2021-01-17 23:53:48.517 +03:30 [INF] Request starting HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - -
+2021-01-17 23:53:48.520 +03:30 [INF] Successfully validated the token.
+2021-01-17 23:53:48.522 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:53:48.539 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserId] = @__p_0
+2021-01-17 23:53:48.549 +03:30 [INF] Bearer was not authenticated. Failure message: Token secuirty stamp is not valid.
+2021-01-17 23:53:48.552 +03:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2021-01-17 23:53:48.556 +03:30 [INF] AuthenticationScheme: Bearer was challenged.
+2021-01-17 23:53:48.564 +03:30 [INF] Request finished HTTP/2 GET https://localhost:5001/api/v1/account/user/AuthenticatorKey - - - 401 - application/json;+charset=utf-8 46.5522ms
+2021-01-17 23:53:54.795 +03:30 [INF] Request starting HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43
+2021-01-17 23:53:54.800 +03:30 [INF] No CORS policy found for the specified request.
+2021-01-17 23:53:54.803 +03:30 [INF] Executing endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:53:54.808 +03:30 [INF] Route matched with {action = "GetNormalToken", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetNormalToken(Web.Model.AccountModels.GetNormalTokenViewModel) on controller Web.Controllers.AccountController (Web).
+2021-01-17 23:53:54.891 +03:30 [INF] Executing action method Web.Controllers.AccountController.GetNormalToken (Web) - Validation state: "Valid"
+2021-01-17 23:53:54.896 +03:30 [INF] Entity Framework Core 5.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-01-17 23:53:54.907 +03:30 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[GeneratedCode], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+2021-01-17 23:53:54.926 +03:30 [INF] Executed action method Web.Controllers.AccountController.GetNormalToken (Web), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 31.1159ms.
+2021-01-17 23:53:54.933 +03:30 [INF] Executing JsonResult, writing value of type 'WebFrameWork.Api.ApiResult`1[[System.Collections.Generic.IDictionary`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String[], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-01-17 23:53:54.949 +03:30 [INF] Executed action Web.Controllers.AccountController.GetNormalToken (Web) in 126.2976ms
+2021-01-17 23:53:54.962 +03:30 [INF] Executed endpoint 'Web.Controllers.AccountController.GetNormalToken (Web)'
+2021-01-17 23:53:54.975 +03:30 [INF] Request finished HTTP/2 POST https://localhost:5001/api/v1/account/user/NormalTokenRequest application/json 43 - 400 - application/json;+charset=utf-8 180.3897ms
